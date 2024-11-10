@@ -3,12 +3,16 @@
 #include "Position.h"
 #include "Color.h"
 
-class Block
+namespace TetrisAPI
 {
-public:
-	std::vector<Position> GetCurrentRotation() const;
-	Color GetColor() const;
-private:
+	class Block
+	{
+	public:
+		void Rotate();
+		std::vector<Position> GetCurrentRotation() const;
+		Color GetColor() const;
+	private:
 
-};
+	};
+}
 

@@ -1,7 +1,10 @@
 #include "Grid.h"
 
+using namespace TetrisAPI;
+
 Grid::Grid(IColorManager* colorManager) :
-	m_emptyCellColor(colorManager->GetEmptyCellColor())
+	m_emptyCellColor(colorManager->GetEmptyCellColor()),
+	m_blockCanMove(false)
 {
 	for (size_t i = 0; i < HEIGHT; i++)
 	{
@@ -14,14 +17,37 @@ Grid::Grid(IColorManager* colorManager) :
 	}
 }
 
+void Grid::Update()
+{
+
+}
+
+void Grid::Rotate()
+{
+	if (!m_blockCanMove)
+		return;
+
+	m_currentBlock.Rotate();
+
+}
+
 void Grid::SpawnBlock(const Block& block)
 {
 	m_currentBlock = block;
 	m_currentBlockOffset = Position::Origin;
+	m_blockCanMove = true;
 
 	for (const auto& pos : m_currentBlock.GetCurrentRotation())
 	{
 		(*this)[pos + m_currentBlockOffset] = m_currentBlock.GetColor();
+	}
+}
+
+void Grid::RemoveCurrentBlock()
+{
+	for (const auto& pos : m_currentBlock.GetCurrentRotation())
+	{
+		(*this)[pos + m_currentBlockOffset] = m_emptyCellColor;
 	}
 }
 
@@ -30,9 +56,15 @@ void Grid::MoveDownCurrentBlock()
 	m_currentBlockOffset += Position(0, 1);
 }
 
-bool Grid::IsPositionEmpty(Position& pos) const
+bool Grid::IsPositionEmpty(const Position& pos) const
 {
 	return (*this)[pos] == m_emptyCellColor;
+}
+
+bool Grid::IsPositionInGrid(const Position& pos) const
+{
+	return  pos.GetX() >= 0 && pos.GetX() < HEIGHT &&
+		pos.GetY() >= 0 && pos.GetY() < WIDTH;
 }
 
 Color& Grid::operator[](const Position& pos)

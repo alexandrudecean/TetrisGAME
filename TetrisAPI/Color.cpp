@@ -1,5 +1,7 @@
 #include "Color.h"
 
+using namespace TetrisAPI;
+
 Color::Color(int r, int g, int b, int a) :
 	m_r(GetValidColorValue(r)),
 	m_g(GetValidColorValue(g)),

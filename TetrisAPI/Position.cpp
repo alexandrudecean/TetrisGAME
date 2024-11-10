@@ -1,5 +1,7 @@
 #include "Position.h"
 
+using namespace TetrisAPI;
+
 const Position Position::Origin(0, 0);
 
 Position::Position(int x, int y) : m_x(x), m_y(y)
