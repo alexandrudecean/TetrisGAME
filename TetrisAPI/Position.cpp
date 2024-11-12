@@ -3,6 +3,9 @@
 using namespace TetrisAPI;
 
 const Position Position::Origin(0, 0);
+const Position Position::Down(0, 1);
+const Position Position::Left(-1, 0);
+const Position Position::Right(1, 0);
 
 Position::Position(int x, int y) : m_x(x), m_y(y)
 {}
@@ -27,7 +30,7 @@ void Position::SetY(int y)
 	m_y = y;
 }
 
-bool Position::operator==(const Position& other)
+bool Position::operator==(const Position& other) const
 {
 	return m_x == other.m_x && m_y == other.m_y;
 }

@@ -9,6 +9,7 @@ namespace TetrisAPI
 	{
 	public:
 		void Rotate();
+		void UndoRotate();
 		std::vector<Position> GetCurrentRotation() const;
 		Color GetColor() const;
 	private:

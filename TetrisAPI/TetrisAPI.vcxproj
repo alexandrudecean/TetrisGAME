@@ -141,6 +141,7 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EColor.h" />
+    <ClInclude Include="EResult.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="IColorManager.h" />
     <ClInclude Include="Position.h" />

@@ -1,6 +1,7 @@
 #pragma once
 #include "Block.h"
 #include "IColorManager.h"
+#include "EResult.h"
 
 namespace TetrisAPI
 {
@@ -9,11 +10,18 @@ namespace TetrisAPI
 	public:
 		Grid(IColorManager* colorManager);
 
-		void Update();
+		int ClearLastLines();
 		void Rotate();
 		void Move(const Position& pos);
-	private:
+		void MoveDown();
+		bool BlockStoppedMoving() const;
 		void SpawnBlock(const Block& block);
+	private:
+		bool LastLineFull() const;
+		void ClearLastLine();
+		EResult TrySpawnCurrentBlock(const Position& offset) const;
+		EResult TrySpawn(const Position& pos) const;
+		void SpawnCurrentBlock();
 		void RemoveCurrentBlock();
 		void MoveDownCurrentBlock();
 		bool IsPositionEmpty(const Position& pos) const;

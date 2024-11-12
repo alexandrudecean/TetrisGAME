@@ -17,9 +17,21 @@ Grid::Grid(IColorManager* colorManager) :
 	}
 }
 
-void Grid::Update()
+void Grid::MoveDown()
 {
+	while (m_blockCanMove)
+		Move(Position::Down);
+}
 
+int Grid::ClearLastLines()
+{
+	int linesCleared = 0;
+	while (LastLineFull())
+	{
+		linesCleared++;
+		ClearLastLine();
+	}
+	return linesCleared;
 }
 
 void Grid::Rotate()
@@ -27,8 +39,35 @@ void Grid::Rotate()
 	if (!m_blockCanMove)
 		return;
 
+	RemoveCurrentBlock();
 	m_currentBlock.Rotate();
+	if (TrySpawnCurrentBlock(m_currentBlockOffset) == Succes)
+		SpawnCurrentBlock();
+	else
+		m_currentBlock.UndoRotate();
+}
 
+void Grid::Move(const Position& pos)
+{
+	Position newOffset = m_currentBlockOffset + pos;
+	RemoveCurrentBlock();
+	EResult result = TrySpawnCurrentBlock(newOffset);
+	if (result == Succes)
+	{
+		m_currentBlockOffset = newOffset;
+		SpawnCurrentBlock();
+		return;
+	}
+
+	if (pos == Position::Down)
+		m_blockCanMove = false;
+	
+	SpawnCurrentBlock();
+}
+
+bool Grid::BlockStoppedMoving() const
+{
+	return !m_blockCanMove;
 }
 
 void Grid::SpawnBlock(const Block& block)
@@ -37,6 +76,59 @@ void Grid::SpawnBlock(const Block& block)
 	m_currentBlockOffset = Position::Origin;
 	m_blockCanMove = true;
 
+	SpawnCurrentBlock();
+}
+
+bool Grid::LastLineFull() const
+{
+	for (size_t i = 0; i < WIDTH; i++)
+	{
+		if (IsPositionEmpty({ HEIGHT - 1, i }))
+			return false;
+	}
+	return true;
+}
+
+void Grid::ClearLastLine()
+{
+	for (size_t i = HEIGHT - 1; i > 0; i--)
+	{
+		for (size_t j = 0; j < WIDTH; j++)
+		{
+			m_grid[i][j] = m_grid[i - 1][j];
+		}
+	}
+	for (size_t j = 0; j < WIDTH; j++)
+	{
+		m_grid[0][j] = m_emptyCellColor;
+	}
+}
+
+EResult Grid::TrySpawnCurrentBlock(const Position& offset) const
+{
+	for (const auto& pos : m_currentBlock.GetCurrentRotation())
+	{
+		Position position = pos + offset;
+		EResult result = TrySpawn(position);
+		if (result != Succes)
+			return result;
+	}
+	return Succes;
+}
+
+EResult Grid::TrySpawn(const Position& pos) const
+{
+	if (IsPositionInGrid(pos))
+	{
+		if (IsPositionEmpty(pos))
+			return Succes;
+		return Collision;
+	}
+	return OutOfBounds;
+}
+
+void Grid::SpawnCurrentBlock()
+{
 	for (const auto& pos : m_currentBlock.GetCurrentRotation())
 	{
 		(*this)[pos + m_currentBlockOffset] = m_currentBlock.GetColor();
@@ -53,7 +145,7 @@ void Grid::RemoveCurrentBlock()
 
 void Grid::MoveDownCurrentBlock()
 {
-	m_currentBlockOffset += Position(0, 1);
+	m_currentBlockOffset += Position::Down;
 }
 
 bool Grid::IsPositionEmpty(const Position& pos) const
