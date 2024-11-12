@@ -83,7 +83,7 @@ bool Grid::LastLineFull() const
 {
 	for (size_t i = 0; i < WIDTH; i++)
 	{
-		if (IsPositionEmpty({ HEIGHT - 1, i }))
+		if (IsPositionEmpty( Position(HEIGHT - 1, i) ))
 			return false;
 	}
 	return true;
