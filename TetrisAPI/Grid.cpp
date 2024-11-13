@@ -65,9 +65,14 @@ void Grid::Move(const Position& pos)
 	SpawnCurrentBlock();
 }
 
-bool Grid::BlockStoppedMoving() const
+bool Grid::BlockCanMove() const
 {
-	return !m_blockCanMove;
+	return m_blockCanMove;
+}
+
+std::vector<std::vector<Color>> TetrisAPI::Grid::GetGrid() const
+{
+	return m_grid;
 }
 
 void Grid::SpawnBlock(const Block& block)

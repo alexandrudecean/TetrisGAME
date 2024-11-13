@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tetris", "Tetris\Tetris.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TetrisAPI", "TetrisAPI\TetrisAPI.vcxproj", "{B99D4B55-886D-44D4-8F0C-E0696A558CC0}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TetrisGameTests", "HangmanGameTests\HangmanGameTests.vcxproj", "{D1F4B658-3D20-4ABB-9D13-09CAB88B8DE2}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TetrisGameTests", "TetrisGameTests\TetrisGameTests.vcxproj", "{D1F4B658-3D20-4ABB-9D13-09CAB88B8DE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
