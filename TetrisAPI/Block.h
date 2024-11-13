@@ -13,7 +13,7 @@ namespace TetrisAPI
 		std::vector<Position> GetCurrentRotation() const;
 		Color GetColor() const;
 	private:
-
+		std::vector<std::vector<Position>> m_rotation;
 	};
 }
 
