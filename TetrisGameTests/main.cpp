@@ -6,15 +6,15 @@
 using testing::Return;
 using namespace TetrisAPI;
 
+class ColorManagerMock : public IColorManager
+{
+public:
+	MOCK_METHOD(Color, GetEmptyCellColor, (), (const override));
+	MOCK_METHOD(Color, GetRandomBlockColor, (), (const override));
+};
+
 namespace GridTests 
 {
-	class ColorManagerMock : public IColorManager
-	{
-	public:
-		MOCK_METHOD(Color, GetEmptyCellColor, (), (const override));
-		MOCK_METHOD(Color, GetRandomBlockColor, (), (const override));
-	};
-
 	std::vector<std::vector<Color>> CreateEmptyGridMatrix(Color emptyCellColor)
 	{
 		std::vector<std::vector<Color>> gridMatrix;
@@ -31,15 +31,10 @@ namespace GridTests
 	}
 
 	TEST(GridTest, CheckConstructor) {
-		ColorManagerMock colorManagerMock;
 		Color emptyCellColor(0, 0, 0, 0);
 		auto expectedMatrixGrid = CreateEmptyGridMatrix(emptyCellColor);
 
-		EXPECT_CALL(colorManagerMock, GetEmptyCellColor())
-			.Times(1)
-			.WillOnce(Return(emptyCellColor));
-
-		Grid grid(&colorManagerMock);
+		Grid grid(emptyCellColor);
 
 		auto actualGridMatrix = grid.GetGrid();
 

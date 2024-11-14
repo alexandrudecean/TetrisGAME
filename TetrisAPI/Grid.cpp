@@ -2,8 +2,8 @@
 
 using namespace TetrisAPI;
 
-Grid::Grid(IColorManager* colorManager) :
-	m_emptyCellColor(colorManager->GetEmptyCellColor()),
+Grid::Grid(const Color& emptyCellColor) :
+	m_emptyCellColor(emptyCellColor),
 	m_blockCanMove(false)
 {
 	for (size_t i = 0; i < HEIGHT; i++)
@@ -40,11 +40,11 @@ void Grid::Rotate()
 		return;
 
 	RemoveCurrentBlock();
-	m_currentBlock.Rotate();
+	m_currentBlock->Rotate();
 	if (TrySpawnCurrentBlock(m_currentBlockOffset) == Succes)
 		SpawnCurrentBlock();
 	else
-		m_currentBlock.UndoRotate();
+		m_currentBlock->UndoRotate();
 }
 
 void Grid::Move(const Position& pos)
@@ -111,17 +111,17 @@ void Grid::ClearLastLine()
 
 EResult Grid::TrySpawnCurrentBlock(const Position& offset) const
 {
-	for (const auto& pos : m_currentBlock.GetCurrentRotation())
+	for (const auto& pos : m_currentBlock->GetCurrentRotation())
 	{
 		Position position = pos + offset;
-		EResult result = TrySpawn(position);
+		EResult result = TrySpawnAt(position);
 		if (result != Succes)
 			return result;
 	}
 	return Succes;
 }
 
-EResult Grid::TrySpawn(const Position& pos) const
+EResult Grid::TrySpawnAt(const Position& pos) const
 {
 	if (IsPositionInGrid(pos))
 	{
@@ -132,25 +132,22 @@ EResult Grid::TrySpawn(const Position& pos) const
 	return OutOfBounds;
 }
 
+void Grid::SetCurrentBlockCells(const Color& color)
+{
+	for (const auto& pos : m_currentBlock->GetCurrentRotation())
+	{
+		(*this)[pos + m_currentBlockOffset] = color;
+	}
+}
+
 void Grid::SpawnCurrentBlock()
 {
-	for (const auto& pos : m_currentBlock.GetCurrentRotation())
-	{
-		(*this)[pos + m_currentBlockOffset] = m_currentBlock.GetColor();
-	}
+	SetCurrentBlockCells(m_currentBlock->GetColor());
 }
 
 void Grid::RemoveCurrentBlock()
 {
-	for (const auto& pos : m_currentBlock.GetCurrentRotation())
-	{
-		(*this)[pos + m_currentBlockOffset] = m_emptyCellColor;
-	}
-}
-
-void Grid::MoveDownCurrentBlock()
-{
-	m_currentBlockOffset += Position::Down;
+	SetCurrentBlockCells(m_emptyCellColor);
 }
 
 bool Grid::IsPositionEmpty(const Position& pos) const

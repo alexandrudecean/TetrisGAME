@@ -1,6 +1,6 @@
 #pragma once
+#include <optional>
 #include "Block.h"
-#include "IColorManager.h"
 #include "EResult.h"
 
 namespace TetrisAPI
@@ -8,7 +8,7 @@ namespace TetrisAPI
 	class Grid
 	{
 	public:
-		Grid(IColorManager* colorManager);
+		Grid(const Color& emptyCellColor);
 
 		bool BlockCanMove() const;
 		std::vector<std::vector<Color>> GetGrid() const;
@@ -27,10 +27,10 @@ namespace TetrisAPI
 		bool LastLineFull() const;
 		void ClearLastLine();
 		EResult TrySpawnCurrentBlock(const Position& offset) const;
-		EResult TrySpawn(const Position& pos) const;
+		EResult TrySpawnAt(const Position& pos) const;
+		void SetCurrentBlockCells(const Color& color);
 		void SpawnCurrentBlock();
 		void RemoveCurrentBlock();
-		void MoveDownCurrentBlock();
 		bool IsPositionEmpty(const Position& pos) const;
 		bool IsPositionInGrid(const Position& pos) const;
 
@@ -39,7 +39,7 @@ namespace TetrisAPI
 
 	private:
 		std::vector<std::vector<Color>> m_grid;
-		Block m_currentBlock;
+		std::optional<Block> m_currentBlock;
 		Position m_currentBlockOffset;
 		bool m_blockCanMove;
 
