@@ -131,6 +131,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\Tetris\Game.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Grid.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Tetris\Game.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EColor.h" />
