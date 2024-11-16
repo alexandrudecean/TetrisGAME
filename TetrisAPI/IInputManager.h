@@ -1,6 +1,6 @@
 #pragma once
+#include <stdint.h>
 #include "EInputType.h"
-#include "stdint.h"
 
 namespace TetrisAPI
 {
