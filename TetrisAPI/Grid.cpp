@@ -99,7 +99,7 @@ bool Grid::LineIsFull(size_t line) const
 {
 	for (size_t i = 0; i < WIDTH; i++)
 	{
-		if (IsPositionEmpty(Position(line, i)))
+		if (IsPositionEmpty(Position(i, line)))
 			return false;
 	}
 	return true;

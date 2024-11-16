@@ -27,10 +27,11 @@ namespace TetrisAPI
 		IColorManagerPtr m_colorManager;
 		IInputManagerPtr m_inputManager;
 		
-		Timer m_moveDownTimer;
-		
 		Grid m_grid;
 		Block m_nextBlock;
+		
+		Timer m_moveDownTimer;
+		
 	};
 }
 

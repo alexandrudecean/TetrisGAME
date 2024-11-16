@@ -22,7 +22,7 @@ void Game::Update()
 	if (!m_grid.BlockCanMove())
 	{
 		m_grid.SpawnBlock(m_nextBlock);
-		m_nextBlock = GetRandomBlock();
+		m_nextBlock = std::move(GetRandomBlock());
 		m_moveDownTimer.Start();
 		return;
 	}
