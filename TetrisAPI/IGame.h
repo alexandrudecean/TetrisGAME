@@ -7,8 +7,10 @@ namespace TetrisAPI
 	class IGame 
 	{
 	public:
-		virtual void HandleInput(IInputManager* inputManager) = 0;
+		virtual void Update() = 0;
 		virtual Block GetNextBlock() const = 0;
+
+		virtual ~IGame() = default;
 	};
 }
 

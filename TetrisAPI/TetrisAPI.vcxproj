@@ -131,9 +131,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Tetris\Game.cpp" />
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Observable.cpp" />
     <ClCompile Include="Position.cpp" />
@@ -141,13 +141,13 @@
     <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Tetris\Game.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="EColor.h" />
     <ClInclude Include="EInputType.h" />
     <ClInclude Include="EBlockType.h" />
     <ClInclude Include="EResult.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="IColorManager.h" />
     <ClInclude Include="IGame.h" />
