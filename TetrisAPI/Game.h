@@ -7,14 +7,15 @@
 #include "Grid.h"
 #include "Timer.h"
 
+using IColorManagerPtr = std::shared_ptr<TetrisAPI::IColorManager>;
+using IInputManagerPtr = std::shared_ptr<TetrisAPI::IInputManager>;
+
 namespace TetrisAPI
 {
-	using ColorManagerPtr = std::shared_ptr<IColorManager>;
-	using InputManagerPtr = std::shared_ptr<IInputManager>;
 	class Game : public IGame
 	{
 	public:
-		Game(const ColorManagerPtr& colorManager, const InputManagerPtr& inputManager);
+		Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputManager);
 
 		void Update();
 		Block GetNextBlock() const;
@@ -22,8 +23,8 @@ namespace TetrisAPI
 	private:
 		Block GetRandomBlock() const;
 	private:
-		ColorManagerPtr m_colorManager;
-		InputManagerPtr m_inputManager;
+		IColorManagerPtr m_colorManager;
+		IInputManagerPtr m_inputManager;
 		
 		Timer m_moveDownTimer;
 		
