@@ -23,13 +23,14 @@ void Grid::MoveDown()
 		Move(Position::Down);
 }
 
-uint16_t Grid::ClearLastLines()
+uint16_t Grid::ClearFullLines()
 {
 	uint16_t linesCleared = 0;
-	while (LastLineFull())
+	int16_t fullLine = GetFullLine();
+	while (fullLine != -1)
 	{
 		linesCleared++;
-		ClearLastLine();
+		ClearLine(fullLine);
 	}
 	return linesCleared;
 }
@@ -84,19 +85,29 @@ void Grid::SpawnBlock(const Block& block)
 	SpawnCurrentBlock();
 }
 
-bool Grid::LastLineFull() const
+int16_t Grid::GetFullLine() const
+{
+	for (int16_t lineIndex = HEIGHT - 1; lineIndex >= 0; lineIndex--)
+	{
+		if (LineIsFull(lineIndex))
+			return lineIndex;
+	}
+	return -1;
+}
+
+bool Grid::LineIsFull(size_t line) const
 {
 	for (size_t i = 0; i < WIDTH; i++)
 	{
-		if (IsPositionEmpty( Position(HEIGHT - 1, i) ))
+		if (IsPositionEmpty(Position(line, i)))
 			return false;
 	}
 	return true;
 }
 
-void Grid::ClearLastLine()
+void Grid::ClearLine(size_t line)
 {
-	for (size_t i = HEIGHT - 1; i > 0; i--)
+	for (size_t i = line; i > 0; i--)
 	{
 		for (size_t j = 0; j < WIDTH; j++)
 		{
