@@ -1,6 +1,17 @@
 #include "DrawManager.h"
+#include "InputManager.h"
+#include "Game.h"
 
-
+IInputManagerPtr GetInputManager()
+{
+    using namespace TetrisAPI;
+    InputManager inputManager;
+    inputManager.Register(MoveDown, KEY_SPACE);
+    inputManager.Register(MoveLeft, KEY_A);
+    inputManager.Register(MoveRight, KEY_D);
+    inputManager.Register(Rotate, KEY_R);
+    return std::make_shared<InputManager>(inputManager);
+}
 
 void ShowGame()
 {
@@ -30,6 +41,5 @@ int main()
 {
     
     ShowGame();
-    GetKeyPressed();
     return 0;
 }

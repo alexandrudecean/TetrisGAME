@@ -1,7 +1,7 @@
 #include <raylib.h>
 #include "InputManager.h"
 
-bool InputManager::Check(EInputType inputType)
+bool InputManager::Check(TetrisAPI::EInputType inputType)
 {
     auto& keyState = m_registeredInputs.at(inputType);
     bool currentState = IsKeyDown(keyState.key);
@@ -14,7 +14,7 @@ bool InputManager::Check(EInputType inputType)
     return validInput;
 }
 
-void InputManager::Register(EInputType inputType, uint16_t key)
+void InputManager::Register(TetrisAPI::EInputType inputType, uint16_t key)
 {
     m_registeredInputs[inputType] = { key, false };
 }

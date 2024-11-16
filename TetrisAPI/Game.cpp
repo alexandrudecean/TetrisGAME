@@ -2,7 +2,7 @@
 
 using namespace TetrisAPI;
 
-Game::Game(const ColorManagerPtr& colorManager, const InputManagerPtr& inputManager) :
+Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputManager) :
 	m_colorManager{ colorManager },
 	m_inputManager{ inputManager },
 	m_grid{ m_colorManager->GetEmptyCellColor() },

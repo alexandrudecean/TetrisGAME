@@ -2,13 +2,11 @@
 #include <unordered_map>
 #include "IInputManager.h"
 
-using namespace TetrisAPI;
-
-class InputManager : public IInputManager
+class InputManager : public TetrisAPI::IInputManager
 {
 public:
-	bool Check(EInputType inputType);
-	void Register(EInputType inputType, uint16_t key);
+	bool Check(TetrisAPI::EInputType inputType);
+	void Register(TetrisAPI::EInputType inputType, uint16_t key);
 private:
 	struct KeyState
 	{
@@ -16,6 +14,6 @@ private:
 		bool lastState;
 	};
 private:
-	std::unordered_map<EInputType, KeyState> m_registeredInputs;
+	std::unordered_map<TetrisAPI::EInputType, KeyState> m_registeredInputs;
 };
 
