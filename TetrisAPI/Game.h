@@ -1,10 +1,11 @@
 #pragma once
+
+#include <memory>
 #include "IGame.h"
 #include "IColorManager.h"
 #include "IInputManager.h"
 #include "Grid.h"
-#include <memory>
-
+#include "Timer.h"
 
 namespace TetrisAPI
 {
@@ -23,8 +24,10 @@ namespace TetrisAPI
 	private:
 		ColorManagerPtr m_colorManager;
 		InputManagerPtr m_inputManager;
+		
+		Timer m_moveDownTimer;
+		
 		Grid m_grid;
-
 		Block m_nextBlock;
 	};
 }
