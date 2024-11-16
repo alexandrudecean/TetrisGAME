@@ -15,7 +15,7 @@ namespace TetrisAPI
 		O
 	};
 
-	EBlockType GetRandomBlockType()
+	inline EBlockType GetRandomBlockType()
 	{
 		std::vector<EBlockType> blocks = { I,L,J,Z,S,T,O };
 		srand(static_cast<unsigned int>(time(nullptr)));

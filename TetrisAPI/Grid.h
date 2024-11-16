@@ -20,8 +20,8 @@ namespace TetrisAPI
 		void SpawnBlock(const Block& block);
 		 
 	public:
-		static inline const uint16_t WIDTH = 15;
-		static inline const uint16_t HEIGHT = 15;
+		static const uint16_t WIDTH = 10;
+		static const uint16_t HEIGHT = 20;
 
 	private:
 		bool LastLineFull() const;
