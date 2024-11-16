@@ -5,6 +5,7 @@
 #include "IColorManager.h"
 #include "IInputManager.h"
 #include "Grid.h"
+#include "Observable.h"
 #include "Timer.h"
 
 using IColorManagerPtr = std::shared_ptr<TetrisAPI::IColorManager>;
@@ -12,7 +13,7 @@ using IInputManagerPtr = std::shared_ptr<TetrisAPI::IInputManager>;
 
 namespace TetrisAPI
 {
-	class Game : public IGame
+	class Game : public IGame, public Observable
 	{
 	public:
 		Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputManager);

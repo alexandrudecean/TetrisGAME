@@ -12,6 +12,13 @@ Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputMa
 
 void Game::Update()
 {
+	int linesClearedCount = m_grid.ClearFullLines();
+	if (linesClearedCount != 0)
+	{
+		NotifyAll(linesClearedCount);
+		return;
+	}
+
 	if (!m_grid.BlockCanMove())
 	{
 		m_grid.SpawnBlock(m_nextBlock);
