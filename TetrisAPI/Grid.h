@@ -13,15 +13,15 @@ namespace TetrisAPI
 		bool BlockCanMove() const;
 		std::vector<std::vector<Color>> GetGrid() const;
 
-		int ClearLastLines();
+		uint16_t ClearLastLines();
 		void Rotate();
 		void Move(const Position& pos);
 		void MoveDown();
 		void SpawnBlock(const Block& block);
 		 
 	public:
-		static inline const int WIDTH = 15;
-		static inline const int HEIGHT = 15;
+		static inline const uint16_t WIDTH = 15;
+		static inline const uint16_t HEIGHT = 15;
 
 	private:
 		bool LastLineFull() const;

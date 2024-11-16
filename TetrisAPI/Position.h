@@ -1,15 +1,16 @@
 #pragma once
+#include <iostream>
 
 namespace TetrisAPI
 {
 	class Position
 	{
 	public:
-		Position(int x = 0, int y = 0);
-		int GetX() const;
-		int GetY() const;
-		void SetX(int x);
-		void SetY(int y);
+		Position(uint16_t x = 0, uint16_t y = 0);
+		uint16_t GetX() const;
+		uint16_t GetY() const;
+		void SetX(uint16_t x);
+		void SetY(uint16_t y);
 
 		bool operator==(const Position& other) const;
 		Position operator+(const Position& other) const;
@@ -20,8 +21,8 @@ namespace TetrisAPI
 		static const Position Left;
 		static const Position Right;
 	private:
-		int m_x;
-		int m_y;
+		uint16_t m_x;
+		uint16_t m_y;
 	};
 }
 

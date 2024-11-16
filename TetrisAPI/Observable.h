@@ -8,7 +8,7 @@ namespace TetrisAPI {
 	public:
 		void Register(IObserver* observer);
 		void Remove(IObserver* observer);
-		void NotifyAll(int numLines);
+		void NotifyAll(uint16_t numLines);
 
 	};
 }

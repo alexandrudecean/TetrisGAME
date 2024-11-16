@@ -2,11 +2,11 @@
 
 using namespace TetrisAPI;
 
-ScoreManager::ScoreManager(int score):m_score(score)
+ScoreManager::ScoreManager(uint16_t score):m_score(score)
 {
 }
 
-int ScoreManager::GetScore()
+uint16_t ScoreManager::GetScore()
 {
     return m_score;
 }

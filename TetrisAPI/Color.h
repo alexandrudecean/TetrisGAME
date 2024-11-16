@@ -1,27 +1,28 @@
 #pragma once
+#include <iostream>
 
 namespace TetrisAPI
 {
 	class Color
 	{
 	public:
-		Color(int r, int g, int b, int a = MAX_COLOR);
-		int GetR()const;
-		int GetG()const;
-		int GetB()const;
-		int GetA()const;
+		Color(uint16_t r, uint16_t g, uint16_t b, uint16_t a = MAX_COLOR);
+		uint16_t GetR()const;
+		uint16_t GetG()const;
+		uint16_t GetB()const;
+		uint16_t GetA()const;
 
 		bool operator==(const Color& other) const;
 	private:
-		int GetValidColorValue(int value);
+		uint16_t GetValidColorValue(uint16_t value);
 	private:
-		int m_r;
-		int m_g;
-		int m_b;
-		int m_a;
+		uint16_t m_r;
+		uint16_t m_g;
+		uint16_t m_b;
+		uint16_t m_a;
 
-		static inline const int MIN_COLOR = 0;
-		static inline const int MAX_COLOR = 255;
+		static inline const uint16_t MIN_COLOR = 0;
+		static inline const uint16_t MAX_COLOR = 255;
 	};
 }
 

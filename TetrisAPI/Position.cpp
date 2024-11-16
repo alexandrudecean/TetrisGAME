@@ -7,25 +7,25 @@ const Position Position::Down(0, 1);
 const Position Position::Left(-1, 0);
 const Position Position::Right(1, 0);
 
-Position::Position(int x, int y) : m_x(x), m_y(y)
+Position::Position(uint16_t x, uint16_t y) : m_x(x), m_y(y)
 {}
 
-int Position::GetX() const
+uint16_t Position::GetX() const
 {
 	return m_x;
 }
 
-int Position::GetY() const
+uint16_t Position::GetY() const
 {
 	return m_y;
 }
 
-void Position::SetX(int x)
+void Position::SetX(uint16_t x)
 {
 	m_x = x;
 }
 
-void Position::SetY(int y)
+void Position::SetY(uint16_t y)
 {
 	m_y = y;
 }

@@ -2,29 +2,29 @@
 
 using namespace TetrisAPI;
 
-Color::Color(int r, int g, int b, int a) :
+Color::Color(uint16_t r, uint16_t g, uint16_t b, uint16_t a) :
 	m_r(GetValidColorValue(r)),
 	m_g(GetValidColorValue(g)),
 	m_b(GetValidColorValue(b)),
 	m_a(GetValidColorValue(a))
 {}
 
-int Color::GetR() const
+uint16_t Color::GetR() const
 {
 	return m_r;
 }
 
-int Color::GetG() const
+uint16_t Color::GetG() const
 {
 	return m_g;
 }
 
-int Color::GetB() const
+uint16_t Color::GetB() const
 {
 	return m_b;
 }
 
-int Color::GetA() const
+uint16_t Color::GetA() const
 {
 	return m_a;
 }
@@ -37,7 +37,7 @@ bool Color::operator==(const Color& other) const
 		m_a == other.m_a;
 }
 
-int Color::GetValidColorValue(int value)
+uint16_t Color::GetValidColorValue(uint16_t value)
 {
 	if (value <= MIN_COLOR)
 		return MIN_COLOR;

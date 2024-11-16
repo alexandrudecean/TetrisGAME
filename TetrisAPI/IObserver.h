@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 
 
 namespace TetrisAPI
@@ -6,6 +7,6 @@ namespace TetrisAPI
 	class IObserver
 	{
 	public:
-		virtual void OnLinesCleared(int numLines) = 0;
+		virtual void OnLinesCleared(uint16_t numLines) = 0;
 	};
 }

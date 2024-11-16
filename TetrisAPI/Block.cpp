@@ -35,7 +35,7 @@ Block::Block(const Color& color, EBlockType blockType) :m_color(color), m_blockT
 void Block::Rotate()
 {
 	indexState++;
-	if (indexState == (int)m_rotation.size())
+	if (indexState == (uint16_t)m_rotation.size())
 	{
 		indexState = 0;
 	}
@@ -46,7 +46,7 @@ void Block::UndoRotate()
 	indexState--;
 	if (indexState < 0)
 	{
-		indexState = (int)m_rotation.size() - 1;
+		indexState = (uint16_t)m_rotation.size() - 1;
 	}
 }
 

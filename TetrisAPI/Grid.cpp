@@ -23,9 +23,9 @@ void Grid::MoveDown()
 		Move(Position::Down);
 }
 
-int Grid::ClearLastLines()
+uint16_t Grid::ClearLastLines()
 {
-	int linesCleared = 0;
+	uint16_t linesCleared = 0;
 	while (LastLineFull())
 	{
 		linesCleared++;

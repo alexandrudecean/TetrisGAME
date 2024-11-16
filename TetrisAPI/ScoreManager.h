@@ -1,15 +1,16 @@
 #pragma once
+#include <iostream>
 
 namespace TetrisAPI
 {
 	class ScoreManager
 	{
 	public:
-		ScoreManager(int score);
-		int GetScore();
+		ScoreManager(uint16_t score);
+		uint16_t GetScore();
 
 	private:
-		int m_score;
+		uint16_t m_score;
 	};
 }
 

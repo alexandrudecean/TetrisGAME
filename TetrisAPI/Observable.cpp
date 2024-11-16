@@ -9,6 +9,6 @@ void Observable::Remove(IObserver* observer)
 {
 }
 
-void Observable::NotifyAll(int numLines)
+void Observable::NotifyAll(uint16_t numLines)
 {
 }
