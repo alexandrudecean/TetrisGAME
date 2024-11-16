@@ -138,7 +138,7 @@
     <ClCompile Include="Observable.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
-    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h" />
@@ -156,7 +156,7 @@
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ScoreManager.h" />
-    <ClInclude Include="Test.h" />
+    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
