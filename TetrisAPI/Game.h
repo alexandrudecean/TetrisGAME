@@ -23,6 +23,7 @@ namespace TetrisAPI
 		const Grid& GetGrid() const;
 
 	private:
+		void ClearLineCheck();
 		Block GetRandomBlock() const;
 	private:
 		IColorManagerPtr m_colorManager;

@@ -12,15 +12,9 @@ Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputMa
 
 void Game::Update()
 {
-	int linesClearedCount = m_grid.ClearFullLines();
-	if (linesClearedCount != 0)
-	{
-		NotifyAll(linesClearedCount);
-		return;
-	}
-
 	if (!m_grid.BlockCanMove())
 	{
+		ClearLineCheck();
 		m_grid.SpawnBlock(m_nextBlock);
 		m_nextBlock = std::move(GetRandomBlock());
 		m_moveDownTimer.Start();
@@ -47,7 +41,7 @@ void Game::Update()
 	{
 		m_grid.Move(Position::Left);
 	}
-	else if (m_inputManager->Check(MoveLeft))
+	else if (m_inputManager->Check(MoveRight))
 	{
 		m_grid.Move(Position::Right);
 	}
@@ -61,6 +55,15 @@ Block Game::GetNextBlock() const
 const Grid& Game::GetGrid() const
 {
 	return m_grid;
+}
+
+void Game::ClearLineCheck()
+{
+	int linesClearedCount = m_grid.ClearFullLines();
+	if (linesClearedCount != 0)
+	{
+		NotifyAll(linesClearedCount);
+	}
 }
 
 Block Game::GetRandomBlock() const

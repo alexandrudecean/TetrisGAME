@@ -31,6 +31,7 @@ uint16_t Grid::ClearFullLines()
 	{
 		linesCleared++;
 		ClearLine(fullLine);
+		fullLine = GetFullLine();
 	}
 	return linesCleared;
 }
