@@ -80,7 +80,7 @@ std::vector<std::vector<Color>> TetrisAPI::Grid::GetGrid() const
 void Grid::SpawnBlock(const Block& block)
 {
 	m_currentBlock = block;
-	m_currentBlockOffset = Position::Origin;
+	m_currentBlockOffset = Position(WIDTH / 2, 0);
 	m_blockCanMove = true;
 
 	SpawnCurrentBlock();

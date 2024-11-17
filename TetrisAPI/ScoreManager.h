@@ -1,13 +1,15 @@
 #pragma once
 #include <stdint.h>
+#include "IObserver.h"
 
 namespace TetrisAPI
 {
-	class ScoreManager
+	class ScoreManager:public IObserver
 	{
 	public:
-		ScoreManager(uint16_t score);
+		ScoreManager();
 		uint16_t GetScore();
+		void OnLinesCleared(uint16_t numLines);
 
 	private:
 		uint16_t m_score;

@@ -15,6 +15,8 @@ namespace TetrisAPI
 		void UndoRotate();
 		std::vector<Position> GetCurrentRotation() const;
 		Color GetColor() const;
+
+	private:
 		void IBlock();
 		void LBlock();
 		void JBlock();

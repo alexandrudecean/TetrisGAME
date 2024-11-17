@@ -9,10 +9,10 @@ IInputManagerPtr GetInputManager()
 {
     using namespace TetrisAPI;
     InputManager inputManager;
-    inputManager.Register(MoveDown, KEY_SPACE);
-    inputManager.Register(MoveLeft, KEY_A);
-    inputManager.Register(MoveRight, KEY_D);
-    inputManager.Register(Rotate, KEY_R);
+    inputManager.Register(MoveDown, KEY_DOWN);
+    inputManager.Register(MoveLeft, KEY_LEFT);
+    inputManager.Register(MoveRight, KEY_RIGHT);
+    inputManager.Register(Rotate, KEY_UP);
     return std::make_shared<InputManager>(inputManager);
 }
 
@@ -32,7 +32,7 @@ IGamePtr GetGame()
 
 void ShowGame()
 {
-    Color Dark_Green = { 20, 160, 133, 255 };
+    Color Dark_Green = { 0, 0, 0, 255 };
 
     const int screenWidth = 800;
     const int screenHeight = 1000;
@@ -50,7 +50,7 @@ void ShowGame()
         
         
         DrawGrid(game->GetGrid());
-        //DrawBlock(game->GetNextBlock(), 0, 0);
+        DrawBlock(game->GetNextBlock(), 535, 135);
         
         EndDrawing();
     }

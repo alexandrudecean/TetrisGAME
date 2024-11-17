@@ -1,6 +1,5 @@
 #include "ColorManager.h"
-#include <ctime>
-#include <cstdlib>
+#include <random>
 
 using namespace TetrisAPI;
 
@@ -20,8 +19,10 @@ ColorManager::ColorManager() :
 
 Color ColorManager::GetRandomBlockColor() const
 {
-    std::srand(std::time(nullptr));
-    uint16_t randomIndex = std::rand() % m_colors.size();
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(0, m_colors.size() - 1);
+    uint16_t randomIndex = dist(gen);
 
     return m_colors[randomIndex];
 }
