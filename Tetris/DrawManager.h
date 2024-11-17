@@ -6,7 +6,7 @@ using APIGrid = TetrisAPI::Grid;
 using APIBlock = TetrisAPI::Block;
 
 static const uint16_t CELL_SIZE = 45;
-static const uint16_t CELL_BORDER = 2;
+static const uint16_t CELL_BORDER = 5;
 
 
 Color GetRaylibColor(const APIColor& color);
