@@ -168,8 +168,8 @@ bool Grid::IsPositionEmpty(const Position& pos) const
 
 bool Grid::IsPositionInGrid(const Position& pos) const
 {
-	return  pos.GetX() >= 0 && pos.GetX() < HEIGHT &&
-		pos.GetY() >= 0 && pos.GetY() < WIDTH;
+	return  pos.GetX() >= 0 && pos.GetX() < WIDTH &&
+		pos.GetY() >= 0 && pos.GetY() < HEIGHT;
 }
 
 Color& Grid::operator[](const Position& pos)

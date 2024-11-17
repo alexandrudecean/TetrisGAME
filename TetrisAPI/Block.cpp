@@ -2,7 +2,10 @@
 
 using namespace TetrisAPI;
 
-Block::Block(const Color& color, EBlockType blockType) :m_color(color), m_blockType(blockType)
+Block::Block(const Color& color, EBlockType blockType) :
+	m_color(color), 
+	m_blockType(blockType),
+	m_indexState(0)
 {
 	switch (m_blockType)	
 	{
@@ -34,25 +37,25 @@ Block::Block(const Color& color, EBlockType blockType) :m_color(color), m_blockT
 
 void Block::Rotate()
 {
-	indexState++;
-	if (indexState == (uint16_t)m_rotation.size())
+	m_indexState++;
+	if (m_indexState == (uint16_t)m_rotation.size())
 	{
-		indexState = 0;
+		m_indexState = 0;
 	}
 }
 
 void Block::UndoRotate()
 {
-	indexState--;
-	if (indexState < 0)
+	m_indexState--;
+	if (m_indexState < 0)
 	{
-		indexState = (uint16_t)m_rotation.size() - 1;
+		m_indexState = (uint16_t)m_rotation.size() - 1;
 	}
 }
 
 std::vector<Position> Block::GetCurrentRotation() const
 {
-	return m_rotation[indexState];
+	return m_rotation[m_indexState];
 }
 
 Color Block::GetColor() const

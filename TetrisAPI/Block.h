@@ -25,7 +25,7 @@ namespace TetrisAPI
 
 	private:
 		std::vector<std::vector<Position>> m_rotation;
-		uint16_t indexState;
+		uint16_t m_indexState;
 		Color m_color;
 		EBlockType m_blockType;
 	};
