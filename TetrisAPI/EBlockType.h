@@ -1,6 +1,5 @@
 #pragma once
-#include <ctime>
-#include<vector>
+#include<random>
 
 namespace TetrisAPI
 {
@@ -15,13 +14,17 @@ namespace TetrisAPI
 		O
 	};
 
+	const std::vector<EBlockType> blockTypes = { I, L, J, Z, S, T, O };
+
 	inline EBlockType GetRandomBlockType()
 	{
-		std::vector<EBlockType> blocks = { I,L,J,Z,S,T,O };
-		srand(static_cast<unsigned int>(time(nullptr)));
-		uint16_t randomIndex = rand() % (sizeof(blocks) / sizeof(blocks[0]));
+		std::random_device rd;  		
+		std::mt19937 gen(rd()); 
+		std::uniform_int_distribution<> dist(0, blockTypes.size() - 1);  
+		
+		uint16_t randomIndex = dist(gen);
 
-		return blocks[randomIndex];
+		return blockTypes[randomIndex];
 	}
 
 }
