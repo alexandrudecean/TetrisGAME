@@ -20,6 +20,7 @@ namespace TetrisAPI
 
 		void Update();
 		Block GetNextBlock() const;
+		const Grid& GetGrid() const;
 
 	private:
 		Block GetRandomBlock() const;

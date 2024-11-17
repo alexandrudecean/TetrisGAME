@@ -58,6 +58,11 @@ Block Game::GetNextBlock() const
 	return m_nextBlock;
 }
 
+const Grid& Game::GetGrid() const
+{
+	return m_grid;
+}
+
 Block Game::GetRandomBlock() const
 {
 	return Block(m_colorManager->GetRandomBlockColor(), GetRandomBlockType());
