@@ -1,6 +1,8 @@
 #include "DrawManager.h"
 #include "InputManager.h"
 #include "Game.h"
+#include "ColorManager.h"
+
 
 IInputManagerPtr GetInputManager()
 {
@@ -20,7 +22,9 @@ void ShowGame()
     const int screenWidth = 800;
     const int screenHeight = 1000;
     APIGrid grid(APIColor(26, 31, 40, 255));
-    APIBlock block(APIColor(200,35,45,255),TetrisAPI::L);
+    TetrisAPI::ColorManager colorManager;
+    APIColor color = colorManager.GetRandomBlockColor();
+    APIBlock block(color,TetrisAPI::GetRandomBlockType()); 
     //grid.SpawnBlock(TetrisAPI::Block(APIColor(200, 32, 48, 255), TetrisAPI::EBlockType::I));
     InitWindow(screenWidth, screenHeight, "Tetris Game");
     SetTargetFPS(60);

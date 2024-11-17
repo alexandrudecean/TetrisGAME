@@ -133,6 +133,7 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Color.cpp" />
+    <ClCompile Include="ColorManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="Observable.cpp" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="Color.h" />
+    <ClInclude Include="ColorManager.h" />
     <ClInclude Include="EColor.h" />
     <ClInclude Include="EInputType.h" />
     <ClInclude Include="EBlockType.h" />
