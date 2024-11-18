@@ -13,7 +13,7 @@ namespace TetrisAPI
 		inline const std::vector<std::vector<Color>>& GetGrid() const { return m_grid; }
 
 		uint16_t ClearFullLines();
-		void Rotate();
+		bool Rotate();
 		void Move(const Position& pos);
 		void MoveDown();
 		bool SpawnBlock(const Block& block);

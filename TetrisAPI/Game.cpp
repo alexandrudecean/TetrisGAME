@@ -22,6 +22,7 @@ void Game::Update()
 		if (!m_grid.SpawnBlock(m_nextBlock))
 		{
 			m_gameIsOver = true;
+			NotifyGameOver();
 			return;
 		}
 		m_nextBlock = std::move(GetRandomBlock());
@@ -43,7 +44,8 @@ void Game::Update()
 
 	if (m_inputManager->Check(Rotate))
 	{
-		m_grid.Rotate();
+		if (m_grid.Rotate())
+			NotifyRotateBlock();
 	}
 	if (m_inputManager->Check(MoveLeft))
 	{

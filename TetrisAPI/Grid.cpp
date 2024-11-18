@@ -36,17 +36,21 @@ uint16_t Grid::ClearFullLines()
 	return linesCleared;
 }
 
-void Grid::Rotate()
+bool Grid::Rotate()
 {
 	if (!m_blockCanMove)
-		return;
+		return false;
 
 	RemoveCurrentBlock();
 	m_currentBlock->Rotate();
 	if (TrySpawnCurrentBlock(m_currentBlockOffset))
+	{
 		SpawnCurrentBlock();
-	else
-		m_currentBlock->UndoRotate();
+		return true;
+	}
+	m_currentBlock->UndoRotate();
+	SpawnCurrentBlock();
+	return false;
 }
 
 void Grid::Move(const Position& pos)

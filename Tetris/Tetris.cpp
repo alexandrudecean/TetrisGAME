@@ -37,7 +37,6 @@ void ShowGame()
 {
 	Font font = GetFontDefault();
 	auto inputManager = GetInputManager();
-	AudioPlayer audioPlayer;
 
 	const int screenWidth = 800;
 	const int screenHeight = 910;
@@ -46,12 +45,14 @@ void ShowGame()
 	SetTargetFPS(60);
 
 	IGamePtr game(std::move(GetGame()));
+	auto audioPlayer = std::make_shared<AudioPlayer>();
 	auto scoreManger = std::make_shared<TetrisAPI::ScoreManager>();
 	game->Register(scoreManger);
+	game->Register(audioPlayer);
 
 	while (WindowShouldClose() == false)
 	{
-		UpdateMusicStream(audioPlayer.GetMusic());
+		UpdateMusicStream(audioPlayer->GetMusic());
 		game->Update();
 		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
 		{

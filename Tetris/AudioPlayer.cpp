@@ -3,11 +3,11 @@
 AudioPlayer::AudioPlayer()
 {
 	InitAudioDevice();
-	m_music = LoadMusicStream("Sounds/playSound.mp3");
+	m_music = LoadMusicStream("../Sounds/playSound.mp3");
 	PlayMusicStream(m_music);
-	m_clearedSound = LoadSound("Sounds/clear.mp3");
-	m_rotateSound = LoadSound("Sounds/rotate.mp3");
-	m_gameOverSound = LoadSound("Sounds/gameOver.mp3");
+	m_clearedSound = LoadSound("../Sounds/clear.mp3");
+	m_rotateSound = LoadSound("../Sounds/rotate.mp3");
+	m_gameOverSound = LoadSound("../Sounds/gameOver.mp3");
 }
 
 void AudioPlayer::OnLinesCleared(uint16_t numLines)
