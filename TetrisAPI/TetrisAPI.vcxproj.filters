@@ -59,12 +59,6 @@
     <ClInclude Include="IColorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EColor.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="EResult.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="EInputType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
