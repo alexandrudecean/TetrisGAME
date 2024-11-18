@@ -135,6 +135,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AudioPlayer.cpp" />
     <ClCompile Include="DrawManager.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Tetris.cpp" />
@@ -145,6 +146,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AudioPlayer.h" />
     <ClInclude Include="DrawManager.h" />
     <ClInclude Include="InputManager.h" />
   </ItemGroup>

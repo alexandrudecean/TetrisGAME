@@ -7,6 +7,7 @@ namespace TetrisAPI
 		MoveLeft,
 		MoveRight,
 		MoveDown,
-		Rotate
+		Rotate,
+		Reset
 	};
 }

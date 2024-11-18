@@ -24,13 +24,45 @@ void Observable::Remove(const std::weak_ptr<IObserver>& observer)
         m_observers.end());
 }
 
-void Observable::NotifyAll(uint16_t numLines)
+void Observable::NotifyLinesCleared(uint16_t numLines)
 {
     for (auto it = m_observers.begin(); it != m_observers.end();)
     {
         if (auto sp = it->lock())
         {
             sp->OnLinesCleared(numLines);
+            ++it;
+        }
+        else
+        {
+            it = m_observers.erase(it);
+        }
+    }
+}
+
+void TetrisAPI::Observable::NotifyGameOver()
+{
+    for (auto it = m_observers.begin(); it != m_observers.end();)
+    {
+        if (auto sp = it->lock())
+        {
+            sp->OnGameOver();
+            ++it;
+        }
+        else
+        {
+            it = m_observers.erase(it);
+        }
+    }
+}
+
+void TetrisAPI::Observable::NotifyRotateBlock()
+{
+    for (auto it = m_observers.begin(); it != m_observers.end();)
+    {
+        if (auto sp = it->lock())
+        {
+            sp->OnRotate();
             ++it;
         }
         else

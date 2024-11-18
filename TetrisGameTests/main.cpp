@@ -114,7 +114,7 @@ namespace ObservableTests
 
 		observable.Register(observerMock);
 
-		observable.NotifyAll(linesCleared);
+		observable.NotifyLinesCleared(linesCleared);
 	}
 
 	TEST(ObservableTest, Remove)
@@ -129,7 +129,7 @@ namespace ObservableTests
 		observable.Register(observerMock);
 		observable.Remove(observerMock);
 
-		observable.NotifyAll(linesCleared);
+		observable.NotifyLinesCleared(linesCleared);
 	}
 
 	TEST(ObservableTest, NotifyAllGetsCalledForAllObservers)
@@ -145,7 +145,7 @@ namespace ObservableTests
 		observable.Register(observerMock1);
 		observable.Register(observerMock2);
 
-		observable.NotifyAll(linesCleared);
+		observable.NotifyLinesCleared(linesCleared);
 	}
 
 	TEST(ObservableTest, NotifyAllOnlyGetsCalledForAlivePointers)
@@ -163,7 +163,7 @@ namespace ObservableTests
 
 		observable.Register(observerMockWeak);
 
-		observable.NotifyAll(linesCleared);
+		observable.NotifyLinesCleared(linesCleared);
 	}
 }
 

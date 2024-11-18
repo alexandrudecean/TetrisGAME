@@ -60,7 +60,7 @@ void Game::ClearLineCheck()
 	int linesClearedCount = m_grid.ClearFullLines();
 	if (linesClearedCount != 0)
 	{
-		NotifyAll(linesClearedCount);
+		NotifyLinesCleared(linesClearedCount);
 	}
 }
 

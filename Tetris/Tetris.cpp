@@ -3,9 +3,8 @@
 #include "InputManager.h"
 #include "ColorManager.h"
 #include "Game.h"
-#include "ScoreManager.h"
+#include "AudioPlayer.h"
 
-using IGamePtr = std::unique_ptr<TetrisAPI::IGame>;
 
 IInputManagerPtr GetInputManager()
 {
@@ -15,6 +14,7 @@ IInputManagerPtr GetInputManager()
 	inputManager.Register(MoveLeft, KEY_LEFT);
 	inputManager.Register(MoveRight, KEY_RIGHT);
 	inputManager.Register(Rotate, KEY_UP);
+	inputManager.Register(Reset, KEY_ENTER);
 	return std::make_shared<InputManager>(inputManager);
 }
 
@@ -32,44 +32,12 @@ IGamePtr GetGame()
 	return std::make_unique<Game>(game);
 }
 
-void DrawScore(const Font& font, const TetrisAPI::ScoreManager& scoreManager)
-{
-	std::string scoreText = std::to_string(scoreManager.GetScore());
-	DrawTextEx(font, "Score:", { 540,45 }, 48, 2, WHITE);
-	DrawRectangleRounded({ 520,100,200,80 }, 0.3, 6, LIGHTGRAY);
-	DrawTextEx(font, scoreText.c_str(), { 525,120 }, 48, 2, BLACK);
-}
-
-void DrawNextBlock(const Font& font, const IGamePtr& game)
-{
-	DrawTextEx(font, "Next:", { 540,245 }, 48, 2, WHITE);
-	DrawRectangleRounded({ 520,300,200,220 }, 0.3, 6, LIGHTGRAY);
-
-	switch (game->GetNextBlock().GetBlockType())
-	{
-	case TetrisAPI::EBlockType::I:
-		DrawBlock(game->GetNextBlock(), 555, 320);
-		break;
-	case TetrisAPI::EBlockType::O:
-		DrawBlock(game->GetNextBlock(), 570, 350);
-		break;
-	default:
-		DrawBlock(game->GetNextBlock(), 570, 320);
-		break;
-	}
-}
-
-void DrawGameOver(const Font& font, const IGamePtr& game)
-{
-	if (game->IsGameOver())
-	{
-		DrawTextEx(font, "GAME OVER", { 480,645 }, 48, 2, WHITE);
-	}
-}
 
 void ShowGame()
 {
 	Font font = GetFontDefault();
+	auto inputManager = GetInputManager();
+	AudioPlayer audioPlayer;
 
 	const int screenWidth = 800;
 	const int screenHeight = 910;
@@ -83,7 +51,14 @@ void ShowGame()
 
 	while (WindowShouldClose() == false)
 	{
+		UpdateMusicStream(audioPlayer.GetMusic());
 		game->Update();
+		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
+		{
+			game = std::move(GetGame());
+			scoreManger= std::make_shared<TetrisAPI::ScoreManager>();
+			game->Register(scoreManger);
+		}
 
 		BeginDrawing();
 		ClearBackground(BLACK);

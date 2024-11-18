@@ -10,7 +10,9 @@ namespace TetrisAPI
 	public:
 		void Register(const std::weak_ptr<IObserver>& observer);
 		void Remove(const std::weak_ptr<IObserver>& observer);
-		void NotifyAll(uint16_t numLines);
+		void NotifyLinesCleared(uint16_t numLines);
+		void NotifyGameOver();
+		void NotifyRotateBlock();
 	private:
 		std::vector<std::weak_ptr<IObserver>> m_observers;
 	};
