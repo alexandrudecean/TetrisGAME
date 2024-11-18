@@ -7,7 +7,7 @@ ScoreManager::ScoreManager():m_score(0)
   
 }
 
-uint16_t ScoreManager::GetScore()
+uint16_t ScoreManager::GetScore() const
 {
     return m_score;
 }

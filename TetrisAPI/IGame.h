@@ -1,10 +1,11 @@
 #pragma once
 #include "IInputManager.h"
+#include "Observable.h"
 #include "Grid.h"
 
 namespace TetrisAPI
 {
-	class IGame 
+	class IGame : public Observable
 	{
 	public:
 		virtual void Update() = 0;

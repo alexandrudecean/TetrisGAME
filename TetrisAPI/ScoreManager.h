@@ -4,11 +4,11 @@
 
 namespace TetrisAPI
 {
-	class ScoreManager:public IObserver
+	class ScoreManager: public IObserver
 	{
 	public:
 		ScoreManager();
-		uint16_t GetScore();
+		uint16_t GetScore() const;
 		void OnLinesCleared(uint16_t numLines);
 
 	private:

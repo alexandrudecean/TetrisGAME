@@ -32,10 +32,9 @@ IGamePtr GetGame()
 	return std::make_unique<Game>(game);
 }
 
-void DrawScore(const Font& font)
+void DrawScore(const Font& font, const TetrisAPI::ScoreManager& scoreManager)
 {
-	TetrisAPI::ScoreManager score;
-	std::string scoreText = std::to_string(score.GetScore());
+	std::string scoreText = std::to_string(scoreManager.GetScore());
 	DrawTextEx(font, "Score:", { 540,45 }, 48, 2, WHITE);
 	DrawRectangleRounded({ 520,100,200,80 }, 0.3, 6, LIGHTGRAY);
 	DrawTextEx(font, scoreText.c_str(), { 525,120 }, 48, 2, BLACK);
@@ -79,6 +78,8 @@ void ShowGame()
 	SetTargetFPS(60);
 
 	IGamePtr game(std::move(GetGame()));
+	auto scoreManger = std::make_shared<TetrisAPI::ScoreManager>();
+	game->Register(scoreManger);
 
 	while (WindowShouldClose() == false)
 	{
@@ -88,7 +89,7 @@ void ShowGame()
 		ClearBackground(BLACK);
 
 		DrawGrid(game->GetGrid());
-		DrawScore(font);
+		DrawScore(font, *scoreManger);
 		DrawNextBlock(font, game);
 		DrawGameOver(font, game);
 
