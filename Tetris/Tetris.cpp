@@ -11,9 +11,13 @@ IInputManagerPtr GetInputManager()
 	using namespace TetrisAPI;
 	InputManager inputManager;
 	inputManager.Register(MoveDown, KEY_DOWN);
+	inputManager.Register(MoveDown, KEY_S);
 	inputManager.Register(MoveLeft, KEY_LEFT);
+	inputManager.Register(MoveLeft, KEY_A);
 	inputManager.Register(MoveRight, KEY_RIGHT);
+	inputManager.Register(MoveRight, KEY_D);
 	inputManager.Register(Rotate, KEY_UP);
+	inputManager.Register(Rotate, KEY_R);
 	inputManager.Register(Reset, KEY_ENTER);
 	return std::make_shared<InputManager>(inputManager);
 }
@@ -45,14 +49,14 @@ void ShowGame()
 	SetTargetFPS(60);
 
 	IGamePtr game(std::move(GetGame()));
-	auto audioPlayer = std::make_shared<AudioPlayer>();
+	//auto audioPlayer = std::make_shared<AudioPlayer>();
 	auto scoreManger = std::make_shared<TetrisAPI::ScoreManager>();
 	game->Register(scoreManger);
-	game->Register(audioPlayer);
+	//game->Register(audioPlayer);
 
 	while (WindowShouldClose() == false)
 	{
-		UpdateMusicStream(audioPlayer->GetMusic());
+		//UpdateMusicStream(audioPlayer->GetMusic());
 		game->Update();
 		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
 		{
