@@ -2,7 +2,6 @@
 
 AudioPlayer::AudioPlayer()
 {
-	InitAudioDevice();
 	m_music = LoadMusicStream("../Sounds/playSound.mp3");
 	SetMusicVolume(m_music, 0.1f);
 	PlayMusicStream(m_music);
@@ -32,5 +31,4 @@ AudioPlayer::~AudioPlayer()
 	UnloadSound(m_rotateSound);
 	UnloadSound(m_gameOverSound);
 	UnloadMusicStream(m_music);
-	CloseAudioDevice();
 }

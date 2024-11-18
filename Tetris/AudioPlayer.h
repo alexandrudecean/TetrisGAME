@@ -1,8 +1,10 @@
 #pragma once
 #include <raylib.h>
+#include <memory>
 #include "IObserver.h"
 
-
+class AudioPlayer;
+using AudioPlayerPtr = std::shared_ptr<AudioPlayer>;
 
 class AudioPlayer :public TetrisAPI::IObserver
 {
@@ -15,7 +17,6 @@ public:
 	inline Music GetMusic() const { return m_music; }
 
 	~AudioPlayer();
-
 private:
 	Music m_music;
 	Sound m_rotateSound;

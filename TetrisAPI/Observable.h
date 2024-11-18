@@ -3,18 +3,20 @@
 #include <vector>
 #include "IObserver.h"
 
+using IObserverPtr = std::weak_ptr<TetrisAPI::IObserver>;
+
 namespace TetrisAPI 
 {
 	class Observable
 	{
 	public:
-		void Register(const std::weak_ptr<IObserver>& observer);
-		void Remove(const std::weak_ptr<IObserver>& observer);
+		void Register(const IObserverPtr& observer);
+		void Remove(const IObserverPtr& observer);
 		void NotifyLinesCleared(uint16_t numLines);
 		void NotifyGameOver();
 		void NotifyRotateBlock();
 	private:
-		std::vector<std::weak_ptr<IObserver>> m_observers;
+		std::vector<IObserverPtr> m_observers;
 	};
 }
 

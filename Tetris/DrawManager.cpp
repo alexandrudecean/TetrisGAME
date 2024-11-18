@@ -31,9 +31,9 @@ void DrawBlock(const APIBlock& block, uint16_t offsetX, uint16_t offsetY)
 }
 
 
-void DrawScore(const Font& font, const TetrisAPI::ScoreManager& scoreManager)
+void DrawScore(const Font& font, const ScoreManagerPtr& scoreManager)
 {
-	std::string scoreText = std::to_string(scoreManager.GetScore());
+	std::string scoreText = std::to_string(scoreManager->GetScore());
 	DrawTextEx(font, "Score:", { 540,45 }, 48, 2, WHITE);
 	DrawRectangleRounded({ 520,100,200,80 }, 0.3, 6, LIGHTGRAY);
 	DrawTextEx(font, scoreText.c_str(), { 525,120 }, 48, 2, BLACK);

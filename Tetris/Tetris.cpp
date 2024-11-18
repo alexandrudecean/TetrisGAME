@@ -2,7 +2,6 @@
 #include "DrawManager.h"
 #include "InputManager.h"
 #include "ColorManager.h"
-#include "Game.h"
 #include "AudioPlayer.h"
 
 
@@ -29,30 +28,49 @@ IColorManagerPtr GetColorManager()
 	return std::make_shared<ColorManager>(colorManager);
 }
 
-IGamePtr GetGame()
+IGamePtr GetGame(const IInputManagerPtr& inputManager)
 {
 	using namespace TetrisAPI;
-	Game game(std::move(GetColorManager()), std::move(GetInputManager()));
+	Game game(std::move(GetColorManager()), inputManager);
 	return std::make_unique<Game>(game);
 }
 
+void InitObservers(AudioPlayerPtr& audioPlayer, ScoreManagerPtr& scoreManager)
+{
+	using namespace TetrisAPI;
+	//audioPlayer = std::make_shared<AudioPlayer>();
+	scoreManager = std::make_shared<ScoreManager>();
+}
+
+void RegisterObservers(IGamePtr& game, const std::vector<IObserverPtr>& observers)
+{
+	std::ranges::for_each(observers, [&game](const IObserverPtr& observer) 
+		{
+			game->Register(observer);
+		});
+}
 
 void ShowGame()
 {
 	Font font = GetFontDefault();
-	auto inputManager = GetInputManager();
 
 	const int screenWidth = 800;
 	const int screenHeight = 910;
 
 	InitWindow(screenWidth, screenHeight, "Tetris Game");
+	InitAudioDevice();
 	SetTargetFPS(60);
 
-	IGamePtr game(std::move(GetGame()));
-	//auto audioPlayer = std::make_shared<AudioPlayer>();
-	auto scoreManger = std::make_shared<TetrisAPI::ScoreManager>();
-	game->Register(scoreManger);
-	//game->Register(audioPlayer);
+	auto inputManager = GetInputManager();
+	
+	IGamePtr game(std::move(GetGame(inputManager)));
+
+	AudioPlayerPtr audioPlayer;
+	ScoreManagerPtr scoreManager;
+	
+	InitObservers(audioPlayer, scoreManager);
+	//RegisterObservers(game, { audioPlayer, scoreManager });
+	RegisterObservers(game, { scoreManager });
 
 	while (WindowShouldClose() == false)
 	{
@@ -60,22 +78,24 @@ void ShowGame()
 		game->Update();
 		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
 		{
-			game = std::move(GetGame());
-			scoreManger= std::make_shared<TetrisAPI::ScoreManager>();
-			game->Register(scoreManger);
+			game = std::move(GetGame(inputManager));
+			InitObservers(audioPlayer, scoreManager);
+			//RegisterObservers(game, { audioPlayer, scoreManager });
+			RegisterObservers(game, { scoreManager });
 		}
 
 		BeginDrawing();
 		ClearBackground(BLACK);
 
 		DrawGrid(game->GetGrid());
-		DrawScore(font, *scoreManger);
+		DrawScore(font, scoreManager);
 		DrawNextBlock(font, game);
 		DrawGameOver(font, game);
 
 		EndDrawing();
 	}
 
+	CloseAudioDevice();
 	CloseWindow();
 }
 
