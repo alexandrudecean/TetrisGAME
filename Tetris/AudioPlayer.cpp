@@ -4,6 +4,7 @@ AudioPlayer::AudioPlayer()
 {
 	InitAudioDevice();
 	m_music = LoadMusicStream("../Sounds/playSound.mp3");
+	SetMusicVolume(m_music, 0.1f);
 	PlayMusicStream(m_music);
 	m_clearedSound = LoadSound("../Sounds/clear.mp3");
 	m_rotateSound = LoadSound("../Sounds/rotate.mp3");
