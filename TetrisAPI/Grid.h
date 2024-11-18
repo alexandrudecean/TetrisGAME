@@ -10,14 +10,14 @@ namespace TetrisAPI
 	public:
 		Grid(const Color& emptyCellColor);
 
-		bool BlockCanMove() const;
-		std::vector<std::vector<Color>> GetGrid() const;
+		inline bool BlockCanMove() const { return m_blockCanMove; }
+		inline const std::vector<std::vector<Color>>& GetGrid() const { return m_grid; }
 
 		uint16_t ClearFullLines();
 		void Rotate();
 		void Move(const Position& pos);
 		void MoveDown();
-		void SpawnBlock(const Block& block);
+		bool SpawnBlock(const Block& block);
 		 
 	public:
 		static const uint16_t WIDTH = 10;
@@ -27,8 +27,8 @@ namespace TetrisAPI
 		int16_t GetFullLine() const;
 		bool LineIsFull(size_t line) const;
 		void ClearLine(size_t line);
-		EResult TrySpawnCurrentBlock(const Position& offset) const;
-		EResult TrySpawnAt(const Position& pos) const;
+		bool TrySpawnCurrentBlock(const Position& offset) const;
+		bool TrySpawnAt(const Position& pos) const;
 		void SetCurrentBlockCells(const Color& color);
 		void SpawnCurrentBlock();
 		void RemoveCurrentBlock();

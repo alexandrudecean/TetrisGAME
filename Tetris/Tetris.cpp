@@ -61,10 +61,10 @@ void DrawNextBlock(const Font& font, const IGamePtr& game)
 
 void DrawGameOver(const Font& font, const IGamePtr& game)
 {
-	/*if (game.GameOver())
-		{
-			DrawTextEx(font, "GAME OVER", { 480,645 }, 48, 2, WHITE);
-		}*/
+	if (game->IsGameOver())
+	{
+		DrawTextEx(font, "GAME OVER", { 480,645 }, 48, 2, WHITE);
+	}
 }
 
 void ShowGame()

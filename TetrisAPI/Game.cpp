@@ -7,15 +7,23 @@ Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputMa
 	m_inputManager{ inputManager },
 	m_grid{ m_colorManager->GetEmptyCellColor() },
 	m_nextBlock{ GetRandomBlock() },
+	m_gameIsOver{ false },
 	m_moveDownTimer{ 1 }
 {}
 
 void Game::Update()
 {
+	if (m_gameIsOver)
+		return;
+
 	if (!m_grid.BlockCanMove())
 	{
 		ClearLineCheck();
-		m_grid.SpawnBlock(m_nextBlock);
+		if (!m_grid.SpawnBlock(m_nextBlock))
+		{
+			m_gameIsOver = true;
+			return;
+		}
 		m_nextBlock = std::move(GetRandomBlock());
 		m_moveDownTimer.Start();
 		return;
@@ -45,16 +53,6 @@ void Game::Update()
 	{
 		m_grid.Move(Position::Right);
 	}
-}
-
-Block Game::GetNextBlock() const
-{
-	return m_nextBlock;
-}
-
-const Grid& Game::GetGrid() const
-{
-	return m_grid;
 }
 
 void Game::ClearLineCheck()

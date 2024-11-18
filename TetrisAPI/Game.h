@@ -17,9 +17,11 @@ namespace TetrisAPI
 	public:
 		Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputManager);
 
-		void Update();
-		Block GetNextBlock() const;
-		const Grid& GetGrid() const;
+		void Update() override;
+
+		inline const Block& GetNextBlock() const override { return m_nextBlock; }
+		inline const Grid& GetGrid() const override { return m_grid; }
+		inline bool IsGameOver() const override { return m_gameIsOver; }
 
 	private:
 		void ClearLineCheck();
@@ -30,6 +32,7 @@ namespace TetrisAPI
 		
 		Grid m_grid;
 		Block m_nextBlock;
+		bool m_gameIsOver;
 		
 		Timer m_moveDownTimer;
 		

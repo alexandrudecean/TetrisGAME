@@ -43,7 +43,7 @@ void Grid::Rotate()
 
 	RemoveCurrentBlock();
 	m_currentBlock->Rotate();
-	if (TrySpawnCurrentBlock(m_currentBlockOffset) == Succes)
+	if (TrySpawnCurrentBlock(m_currentBlockOffset))
 		SpawnCurrentBlock();
 	else
 		m_currentBlock->UndoRotate();
@@ -53,8 +53,7 @@ void Grid::Move(const Position& pos)
 {
 	Position newOffset = m_currentBlockOffset + pos;
 	RemoveCurrentBlock();
-	EResult result = TrySpawnCurrentBlock(newOffset);
-	if (result == Succes)
+	if (TrySpawnCurrentBlock(newOffset))
 	{
 		m_currentBlockOffset = newOffset;
 		SpawnCurrentBlock();
@@ -67,23 +66,17 @@ void Grid::Move(const Position& pos)
 	SpawnCurrentBlock();
 }
 
-bool Grid::BlockCanMove() const
-{
-	return m_blockCanMove;
-}
-
-std::vector<std::vector<Color>> TetrisAPI::Grid::GetGrid() const
-{
-	return m_grid;
-}
-
-void Grid::SpawnBlock(const Block& block)
+bool Grid::SpawnBlock(const Block& block)
 {
 	m_currentBlock = block;
 	m_currentBlockOffset = Position(WIDTH / 2, 0);
 	m_blockCanMove = true;
 
+	if (!TrySpawnCurrentBlock(m_currentBlockOffset))
+		return false;
+
 	SpawnCurrentBlock();
+	return true;
 }
 
 int16_t Grid::GetFullLine() const
@@ -121,27 +114,26 @@ void Grid::ClearLine(size_t line)
 	}
 }
 
-EResult Grid::TrySpawnCurrentBlock(const Position& offset) const
+bool Grid::TrySpawnCurrentBlock(const Position& offset) const
 {
 	for (const auto& pos : m_currentBlock->GetCurrentRotation())
 	{
 		Position position = pos + offset;
-		EResult result = TrySpawnAt(position);
-		if (result != Succes)
-			return result;
+		if (!TrySpawnAt(position))
+			return false;
 	}
-	return Succes;
+	return true;
 }
 
-EResult Grid::TrySpawnAt(const Position& pos) const
+bool Grid::TrySpawnAt(const Position& pos) const
 {
 	if (IsPositionInGrid(pos))
 	{
 		if (IsPositionEmpty(pos))
-			return Succes;
-		return Collision;
+			return true;
+		return false;
 	}
-	return OutOfBounds;
+	return false;
 }
 
 void Grid::SetCurrentBlockCells(const Color& color)
