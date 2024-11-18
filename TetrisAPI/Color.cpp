@@ -9,26 +9,6 @@ Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) :
 	m_a(GetValidColorValue(a))
 {}
 
-uint8_t Color::GetR() const
-{
-	return m_r;
-}
-
-uint8_t Color::GetG() const
-{
-	return m_g;
-}
-
-uint8_t Color::GetB() const
-{
-	return m_b;
-}
-
-uint8_t Color::GetA() const
-{
-	return m_a;
-}
-
 bool Color::operator==(const Color& other) const
 {
 	return m_r == other.m_r &&
