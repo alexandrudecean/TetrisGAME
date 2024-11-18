@@ -142,6 +142,7 @@
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseObserver.h" />
     <ClInclude Include="Block.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ColorManager.h" />

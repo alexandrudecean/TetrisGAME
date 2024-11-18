@@ -89,5 +89,8 @@
     <ClInclude Include="ColorManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BaseObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
