@@ -31,7 +31,7 @@ IColorManagerPtr GetColorManager()
 IGamePtr GetGame(const IInputManagerPtr& inputManager)
 {
 	using namespace TetrisAPI;
-	Game game(std::move(GetColorManager()), inputManager);
+	Game game{ std::move(GetColorManager()), inputManager };
 	return std::make_unique<Game>(game);
 }
 

@@ -3,8 +3,8 @@
 using namespace TetrisAPI;
 
 Grid::Grid(const Color& emptyCellColor) :
-	m_emptyCellColor(emptyCellColor),
-	m_blockCanMove(false)
+	m_emptyCellColor{ emptyCellColor },
+	m_blockCanMove{ false }
 {
 	for (size_t i = 0; i < HEIGHT; i++)
 	{
@@ -73,7 +73,7 @@ void Grid::Move(const Position& pos)
 bool Grid::SpawnBlock(const Block& block)
 {
 	m_currentBlock = block;
-	m_currentBlockOffset = Position(WIDTH / 2, 0);
+	m_currentBlockOffset = { WIDTH / 2, 0 };
 	m_blockCanMove = true;
 
 	if (!TrySpawnCurrentBlock(m_currentBlockOffset))

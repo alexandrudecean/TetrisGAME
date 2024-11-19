@@ -3,9 +3,9 @@
 using namespace TetrisAPI;
 
 Block::Block(const Color& color, EBlockType blockType) :
-	m_color(color), 
-	m_blockType(blockType),
-	m_indexState(0)
+	m_color{ color },
+	m_blockType{ blockType },
+	m_indexState{ 0 }
 {
 	switch (m_blockType)	
 	{
@@ -38,7 +38,7 @@ Block::Block(const Color& color, EBlockType blockType) :
 void Block::Rotate()
 {
 	m_indexState++;
-	if (m_indexState == (uint16_t)m_rotation.size())
+	if (m_indexState == m_rotation.size())
 	{
 		m_indexState = 0;
 	}
@@ -49,11 +49,11 @@ void Block::UndoRotate()
 	m_indexState--;
 	if (m_indexState < 0)
 	{
-		m_indexState = (uint16_t)m_rotation.size() - 1;
+		m_indexState = m_rotation.size() - 1;
 	}
 }
 
-void TetrisAPI::Block::IBlock()
+void Block::IBlock()
 {
 	m_rotation =
 	{
@@ -75,7 +75,7 @@ void Block::LBlock()
 	};
 }
 
-void TetrisAPI::Block::JBlock()
+void Block::JBlock()
 {
 	m_rotation =
 	{
@@ -86,7 +86,7 @@ void TetrisAPI::Block::JBlock()
 	};
 }
 
-void TetrisAPI::Block::ZBlock()
+void Block::ZBlock()
 {
 	m_rotation =
 	{
@@ -97,7 +97,7 @@ void TetrisAPI::Block::ZBlock()
 	};
 }
 
-void TetrisAPI::Block::SBlock()
+void Block::SBlock()
 {
 	m_rotation =
 	{
@@ -108,7 +108,7 @@ void TetrisAPI::Block::SBlock()
 	};
 }
 
-void TetrisAPI::Block::TBlock()
+void Block::TBlock()
 {
 	m_rotation =
 	{
@@ -119,7 +119,7 @@ void TetrisAPI::Block::TBlock()
 	};
 }
 
-void TetrisAPI::Block::OBlock()
+void Block::OBlock()
 {
 	m_rotation =
 	{

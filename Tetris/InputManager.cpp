@@ -42,5 +42,4 @@ bool InputManager::Check(const std::vector<uint16_t>& keys)
             return true;
     }
     return false;
-    
 }

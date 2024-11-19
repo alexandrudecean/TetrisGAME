@@ -29,5 +29,5 @@ Color ColorManager::GetRandomBlockColor() const
 
 Color ColorManager::GetEmptyCellColor() const
 {
-    return Color(26, 31, 40, 255);
+    return { 26, 31, 40, 255 };
 }

@@ -68,5 +68,5 @@ void Game::ClearLineCheck()
 
 Block Game::GetRandomBlock() const
 {
-	return Block(m_colorManager->GetRandomBlockColor(), GetRandomBlockType());
+	return { m_colorManager->GetRandomBlockColor(), GetRandomBlockType() };
 }

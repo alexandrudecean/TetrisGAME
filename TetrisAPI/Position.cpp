@@ -7,7 +7,7 @@ const Position Position::Down(0, 1);
 const Position Position::Left(-1, 0);
 const Position Position::Right(1, 0);
 
-Position::Position(uint16_t x, uint16_t y) : m_x(x), m_y(y)
+Position::Position(uint16_t x, uint16_t y) : m_x{ x }, m_y{ y }
 {}
 
 bool Position::operator==(const Position& other) const
@@ -17,7 +17,7 @@ bool Position::operator==(const Position& other) const
 
 Position Position::operator+(const Position& other) const
 {
-	Position temp(*this);
+	Position temp{ *this };
 	return temp+=other;
 }
 

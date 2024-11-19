@@ -2,7 +2,7 @@
 
 using namespace TetrisAPI;
 
-ScoreManager::ScoreManager():m_score(0)
+ScoreManager::ScoreManager() : m_score{ 0 }
 {}
 
 

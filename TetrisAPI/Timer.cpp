@@ -1,5 +1,7 @@
 #include "Timer.h"
 
+using namespace TetrisAPI;
+
 Timer::Timer(const uint16_t& durationInSeconds) :
 	m_duration{ seconds(durationInSeconds) },
 	m_isActive{ false }
