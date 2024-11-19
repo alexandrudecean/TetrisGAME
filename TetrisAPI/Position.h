@@ -7,10 +7,10 @@ namespace TetrisAPI
 	{
 	public:
 		Position(uint16_t x = 0, uint16_t y = 0);
-		uint16_t GetX() const;
-		uint16_t GetY() const;
-		void SetX(uint16_t x);
-		void SetY(uint16_t y);
+		inline uint16_t GetX() const { return m_x; }
+		inline uint16_t GetY() const { return m_y; }
+		inline void SetX(uint16_t x) { m_x = x; }
+		inline void SetY(uint16_t y) { m_y = y; }
 
 		bool operator==(const Position& other) const;
 		Position operator+(const Position& other) const;

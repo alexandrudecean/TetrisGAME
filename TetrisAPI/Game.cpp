@@ -6,7 +6,7 @@ Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputMa
 	m_colorManager{ colorManager },
 	m_inputManager{ inputManager },
 	m_grid{ m_colorManager->GetEmptyCellColor() },
-	m_nextBlock{ GetRandomBlock() },
+	m_nextBlock{ std::move(GetRandomBlock()) },
 	m_gameIsOver{ false },
 	m_moveDownTimer{ 1 }
 {}

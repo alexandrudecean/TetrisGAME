@@ -13,9 +13,9 @@ namespace TetrisAPI
 		Block(const Color& color, EBlockType blockType);
 		void Rotate();
 		void UndoRotate();
-		std::vector<Position> GetCurrentRotation() const;
-		EBlockType GetBlockType() const;
-		Color GetColor() const;
+		inline const std::vector<Position>& GetCurrentRotation() const { return m_rotation[m_indexState]; }
+		inline EBlockType GetBlockType() const { return m_blockType; }
+		inline Color GetColor() const { return m_color; }
 
 	private:
 		void IBlock();

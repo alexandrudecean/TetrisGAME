@@ -27,8 +27,3 @@ void Timer::Stop()
 	m_isActive = false;
 }
 
-bool Timer::IsActive() const
-{
-	return m_isActive;
-}
-

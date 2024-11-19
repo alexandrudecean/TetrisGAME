@@ -8,7 +8,7 @@ class Timer
 public:
 	Timer(const uint16_t& durationInSeconds);
 
-	bool IsActive()const;
+	inline bool IsActive()const { return m_isActive; }
 	seconds GetElapsedTime()const;
 	bool ReachedThreshold()const;
 

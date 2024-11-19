@@ -8,7 +8,7 @@ namespace TetrisAPI
 	{
 	public:
 		ScoreManager();
-		uint16_t GetScore() const;
+		inline uint16_t GetScore() const { return m_score; }
 		void OnLinesCleared(uint16_t numLines) override;
 	private:
 		uint16_t m_score;

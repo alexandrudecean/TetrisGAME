@@ -53,21 +53,6 @@ void Block::UndoRotate()
 	}
 }
 
-std::vector<Position> Block::GetCurrentRotation() const
-{
-	return m_rotation[m_indexState];
-}
-
-EBlockType TetrisAPI::Block::GetBlockType() const
-{
-	return m_blockType;
-}
-
-Color Block::GetColor() const
-{
-	return m_color;
-}
-
 void TetrisAPI::Block::IBlock()
 {
 	m_rotation =

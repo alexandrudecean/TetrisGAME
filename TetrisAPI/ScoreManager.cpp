@@ -3,14 +3,8 @@
 using namespace TetrisAPI;
 
 ScoreManager::ScoreManager():m_score(0)
-{
-  
-}
+{}
 
-uint16_t ScoreManager::GetScore() const
-{
-    return m_score;
-}
 
 void ScoreManager::OnLinesCleared(uint16_t numLines)
 {
