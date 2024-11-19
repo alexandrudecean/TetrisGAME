@@ -29,27 +29,39 @@ public:
 	MOCK_METHOD(void, OnGameOver, (), (override));
 };
 
+namespace BlockTests
+{
+	TEST(BlockTest, Constructor)
+	{
+		Color color{ 0, 0, 0, 0 };
+		Block block{ color, I };
+
+		ASSERT_EQ(block.GetColor(), color);
+		ASSERT_EQ(block.GetBlockType(), I);
+	}
+}
+
 namespace GameTests
 {
 	TEST(GameTest, Constructor)
 	{
 		auto inputManagerMock = std::make_shared<IInputManagerMock>();
 		auto colorManagerMock = std::make_shared<IColorManagerMock>();
-		Color color(0, 0, 0, 0);
+		Color color{ 0, 0, 0, 0 };
 
 		EXPECT_CALL(*colorManagerMock, GetEmptyCellColor())
 			.WillOnce(Return(color));
 		EXPECT_CALL(*colorManagerMock, GetRandomBlockColor())
 			.WillOnce(Return(color));
 
-		Game game(colorManagerMock, inputManagerMock);
+		Game game{ colorManagerMock, inputManagerMock };
 	}
 
 	TEST(GameTest, FirstUpdateGetsCalled)
 	{
 		auto inputManagerMock = std::make_shared<IInputManagerMock>();
 		auto colorManagerMock = std::make_shared<IColorManagerMock>();
-		Color color(0, 0, 0, 0);
+		Color color{ 0, 0, 0, 0 };
 
 		EXPECT_CALL(*colorManagerMock, GetEmptyCellColor())
 			.WillOnce(Return(color));
@@ -57,7 +69,7 @@ namespace GameTests
 			.Times(2)
 			.WillRepeatedly(Return(color));
 
-		Game game(colorManagerMock, inputManagerMock);
+		Game game{ colorManagerMock, inputManagerMock };
 		game.Update();
 	}
 }
@@ -66,14 +78,14 @@ namespace TimerTests
 {
 	TEST(TimerTest, Constructor)
 	{
-		Timer timer(1);
+		Timer timer{ 1 };
 
 		ASSERT_EQ(timer.IsActive(), false);
 	}
 
 	TEST(TimerTest, StartStopWorks)
 	{
-		Timer timer(1);
+		Timer timer{ 1 };
 		timer.Start();
 		
 		ASSERT_EQ(timer.IsActive(), true);
@@ -83,7 +95,7 @@ namespace TimerTests
 
 	TEST(TimerTest, GetElapsedTimeWorks)
 	{
-		Timer timer(3);
+		Timer timer{ 3 };
 		timer.Start();
 
 		std::this_thread::sleep_for(2s);
@@ -94,7 +106,7 @@ namespace TimerTests
 
 	TEST(TimerTest, ReachedThreshold)
 	{
-		Timer timer(3);
+		Timer timer{ 3 };
 		timer.Start();
 
 		std::this_thread::sleep_for(3s);
@@ -188,12 +200,12 @@ namespace GridTests
 
 	TEST(GridTest, CheckConstructor) 
 	{
-		Color emptyCellColor(0, 0, 0, 0);
-		auto expectedMatrixGrid = CreateEmptyGridMatrix(emptyCellColor);
+		Color emptyCellColor{ 0, 0, 0, 0 };
+		auto expectedMatrixGrid{ CreateEmptyGridMatrix(emptyCellColor) };
 
-		Grid grid(emptyCellColor);
+		Grid grid{ emptyCellColor };
 
-		auto actualGridMatrix = grid.GetGrid();
+		const auto& actualGridMatrix = grid.GetGrid();
 
 		ASSERT_EQ(grid.BlockCanMove(), false);
 		ASSERT_EQ(expectedMatrixGrid.size(), actualGridMatrix.size());
