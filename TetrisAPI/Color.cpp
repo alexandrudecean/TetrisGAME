@@ -3,10 +3,10 @@
 using namespace TetrisAPI;
 
 Color::Color(uint8_t r, uint8_t g, uint8_t b, uint8_t a) :
-	m_r{ GetValidColorValue(r) },
-	m_g{ GetValidColorValue(g) },
-	m_b{ GetValidColorValue(b) },
-	m_a{ GetValidColorValue(a) }
+	m_r{ r },
+	m_g{ g },
+	m_b{ b },
+	m_a{ a }
 {}
 
 bool Color::operator==(const Color& other) const
@@ -17,11 +17,3 @@ bool Color::operator==(const Color& other) const
 		m_a == other.m_a;
 }
 
-uint8_t Color::GetValidColorValue(uint8_t value)
-{
-	if (value <= MIN_COLOR)
-		return MIN_COLOR;
-	if (value >= MAX_COLOR)
-		return MAX_COLOR;
-	return value;
-}
