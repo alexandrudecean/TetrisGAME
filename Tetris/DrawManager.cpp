@@ -62,7 +62,10 @@ void DrawGameOver(const Font& font, const IGamePtr& game)
 {
 	if (game->IsGameOver())
 	{
-		DrawTextEx(font, "GAME OVER", { 480, 645 }, 48, 2, WHITE);
-		DrawTextEx(font, "For reset, press ENTER key", { 460, 685 }, 28, 2, WHITE);
+		Color color = { 200, 200, 200, 128 };
+		DrawRectangleRounded({ 0, 0, 800, 910 }, 0, 6, color);
+		DrawTextEx(font, "GAME OVER", { 120, 245 }, 108, 2, BLACK);
+		DrawTextEx(font, "For reset, press:", { 60, 385 }, 88, 2,BLACK);
+		DrawTextEx(font, "ENTER", { 170, 520 }, 130, 2,BLACK);
 	}
 }
