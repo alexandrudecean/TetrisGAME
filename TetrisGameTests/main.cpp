@@ -432,6 +432,79 @@ namespace GridTests
 	}
 }
 
+namespace PositionTests
+{
+	TEST(PositionTest, CheckConstructor)
+	{
+		Position position{ 0,1 };
+
+		ASSERT_EQ(position.GetX(), 0);
+		ASSERT_EQ(position.GetY(), 1);
+	}
+
+	TEST(PositionTest, CheckEqualsOperator)
+	{
+		Position position1{ 0,1 };
+		Position position2{ 0,1 };
+
+		ASSERT_EQ(position1, position2);
+	}
+
+	TEST(PositionTest, CheckPlusOperator)
+	{
+		Position position1{ 0,1 };
+		Position position2{ 2,3 };
+
+		Position result = position1 + position2;
+
+		ASSERT_EQ(position1, Position(0, 1));
+		ASSERT_EQ(position2, Position(2, 3));
+		ASSERT_EQ(result, Position(2, 4));
+	}
+
+	TEST(PositionTest, CheckPlusEqualsOperator)
+	{
+		Position position1{ 0,1 };
+		Position position2{ 2,3 };
+
+		position1 += position2;
+
+		ASSERT_EQ(position1, Position(2, 4));
+		ASSERT_EQ(position2, Position(2, 3));
+	}
+}
+
+namespace ColorTests
+{
+	TEST(ColorTest, CheckConstructor)
+	{
+		uint8_t m_r = 0;
+		uint8_t m_g = 25;
+		uint8_t m_b = 30;
+		uint8_t m_a = 255;
+
+		Color color{ m_r,m_g,m_b,m_a };
+
+		ASSERT_EQ(color.GetR(), m_r);
+		ASSERT_EQ(color.GetG(), m_g);
+		ASSERT_EQ(color.GetB(), m_b);
+		ASSERT_EQ(color.GetA(), m_a);
+	}
+
+	TEST(ColorTest, CheckEqualsOperator)
+	{
+		uint8_t m_r = 0;
+		uint8_t m_g = 25;
+		uint8_t m_b = 30;
+		uint8_t m_a = 255;
+
+		Color color1{ m_r,m_g,m_b,m_a };
+		Color color2{ m_r,m_g,m_b,m_a };
+
+		ASSERT_EQ(color1, color2);
+	}
+}
+
 int main(int argc, char** argv)
 {
 	testing::InitGoogleTest(&argc, argv);
