@@ -3,6 +3,7 @@
 #include <thread>
 
 #include "Game.h"
+#include "ScoreManager.h"
 
 using namespace testing;
 using namespace TetrisAPI;
@@ -29,6 +30,24 @@ public:
 	MOCK_METHOD(void, OnGameOver, (), (override));
 };
 
+namespace ScoreManagerTests
+{
+	TEST(ScoreManagerTest, Constructor)
+	{
+		ScoreManager scoreManager;
+
+		ASSERT_EQ(scoreManager.GetScore(), 0);
+	}
+
+	TEST(ScoreManagerTest, OnLinesClearedWorks)
+	{
+		ScoreManager scoreManager;
+		scoreManager.OnLinesCleared(3);
+
+		ASSERT_TRUE(scoreManager.GetScore() != 0);
+	}
+}
+
 namespace BlockTests
 {
 	TEST(BlockTest, Constructor)
@@ -38,6 +57,44 @@ namespace BlockTests
 
 		ASSERT_EQ(block.GetColor(), color);
 		ASSERT_EQ(block.GetBlockType(), I);
+	}
+
+	TEST(BlockTest, RotatingBlockFourTimesGetsItToInitial)
+	{
+		Color color{ 0, 0, 0, 0 };
+		Block block{ color, I };
+		auto state{ block.GetCurrentRotation() };
+
+		for (size_t i = 0; i < 4; i++)
+			block.Rotate();
+		auto stateAfterUndo{ block.GetCurrentRotation() };
+
+		EXPECT_EQ(state, stateAfterUndo);
+	}
+
+	TEST(BlockTest, RotateUndoRotateWorks)
+	{
+		Color color{ 0, 0, 0, 0 };
+		Block block{ color, I };
+		auto state{ block.GetCurrentRotation() };
+
+		block.Rotate();
+		block.UndoRotate();
+		auto stateAfterRotate{ block.GetCurrentRotation() };
+
+		EXPECT_EQ(state, stateAfterRotate);
+	}
+
+	TEST(BlockTest, RotateDoesNothingToOBlock)
+	{
+		Color color{ 0, 0, 0, 0 };
+		Block block{ color, O };
+		auto state{ block.GetCurrentRotation() };
+
+		block.Rotate();
+		auto stateAfterRotate{ block.GetCurrentRotation() };
+
+		EXPECT_EQ(state, stateAfterRotate);
 	}
 }
 
@@ -72,6 +129,114 @@ namespace GameTests
 		Game game{ colorManagerMock, inputManagerMock };
 		game.Update();
 	}
+
+	TEST(GameTest, OnMoveDownNoOtherInputWillBeChecked)
+	{
+		auto inputManagerMock = std::make_shared<IInputManagerMock>();
+		auto colorManagerMock = std::make_shared<IColorManagerMock>();
+		Color emptyCellColor{ 0, 0, 0, 0 };
+		Color blockColor{ 1, 1, 1, 1 };
+
+		ON_CALL(*colorManagerMock, GetEmptyCellColor())
+			.WillByDefault(Return(emptyCellColor));
+		ON_CALL(*colorManagerMock, GetRandomBlockColor())
+			.WillByDefault(Return(blockColor));
+
+		EXPECT_CALL(*inputManagerMock, Check(MoveDown))
+			.Times(1)
+			.WillOnce(Return(true));
+
+		Game game{ colorManagerMock, inputManagerMock };
+
+		game.Update();
+	}
+
+	TEST(GameTest, IfNotMoveDown_RotateAndMoveLeftRightInputWillBeChecked)
+	{
+		auto inputManagerMock = std::make_shared<IInputManagerMock>();
+		auto colorManagerMock = std::make_shared<IColorManagerMock>();
+		Color emptyCellColor{ 0, 0, 0, 0 };
+		Color blockColor{ 1, 1, 1, 1 };
+
+		ON_CALL(*colorManagerMock, GetEmptyCellColor())
+			.WillByDefault(Return(emptyCellColor));
+		ON_CALL(*colorManagerMock, GetRandomBlockColor())
+			.WillByDefault(Return(blockColor));
+		ON_CALL(*inputManagerMock, Check(_))
+			.WillByDefault(Return(false));
+
+		EXPECT_CALL(*inputManagerMock, Check(MoveDown));
+		EXPECT_CALL(*inputManagerMock, Check(MoveLeft));
+		EXPECT_CALL(*inputManagerMock, Check(MoveRight));
+		EXPECT_CALL(*inputManagerMock, Check(Rotate));
+
+		Game game{ colorManagerMock, inputManagerMock };
+
+		game.Update();
+	}
+
+	TEST(GameTest, IfCheckMoveLeftTrueRightWillNotBeChecked)
+	{
+		auto inputManagerMock = std::make_shared<IInputManagerMock>();
+		auto colorManagerMock = std::make_shared<IColorManagerMock>();
+		Color emptyCellColor{ 0, 0, 0, 0 };
+		Color blockColor{ 1, 1, 1, 1 };
+
+		ON_CALL(*colorManagerMock, GetEmptyCellColor())
+			.WillByDefault(Return(emptyCellColor));
+		ON_CALL(*colorManagerMock, GetRandomBlockColor())
+			.WillByDefault(Return(blockColor));
+		ON_CALL(*inputManagerMock, Check(_))
+			.WillByDefault([](EInputType input)
+				{
+					switch (input)
+					{
+					case MoveLeft: return true;
+					default: return false;
+					}
+				});
+
+		EXPECT_CALL(*inputManagerMock, Check(MoveDown));
+		EXPECT_CALL(*inputManagerMock, Check(Rotate));
+		EXPECT_CALL(*inputManagerMock, Check(MoveLeft));
+		EXPECT_CALL(*inputManagerMock, Check(MoveRight))
+			.Times(0);
+
+		Game game{ colorManagerMock, inputManagerMock };
+
+		game.Update();
+	}
+
+	TEST(GameTest, OnRotateNotifyRotateGetsCalles)
+	{
+		auto inputManagerMock = std::make_shared<IInputManagerMock>();
+		auto colorManagerMock = std::make_shared<IColorManagerMock>();
+		auto observerMock = std::make_shared<IObserverMock>();
+
+		Color emptyCellColor{ 0, 0, 0, 0 };
+		Color blockColor{ 1, 1, 1, 1 };
+
+		ON_CALL(*colorManagerMock, GetEmptyCellColor())
+			.WillByDefault(Return(emptyCellColor));
+		ON_CALL(*colorManagerMock, GetRandomBlockColor())
+			.WillByDefault(Return(blockColor));
+		ON_CALL(*inputManagerMock, Check(_))
+			.WillByDefault([](EInputType input)
+				{
+					switch (input)
+					{
+					case Rotate: return true;
+					default: return false;
+					}
+				});
+
+		EXPECT_CALL(*observerMock, OnRotate);
+
+		Game game{ colorManagerMock, inputManagerMock };
+		game.Register(observerMock);
+
+		game.Update();
+	}
 }
 
 namespace TimerTests
@@ -87,7 +252,7 @@ namespace TimerTests
 	{
 		Timer timer{ 1 };
 		timer.Start();
-		
+
 		ASSERT_EQ(timer.IsActive(), true);
 		timer.Stop();
 		ASSERT_EQ(timer.IsActive(), false);
@@ -99,7 +264,7 @@ namespace TimerTests
 		timer.Start();
 
 		std::this_thread::sleep_for(2s);
-		
+
 		ASSERT_EQ(timer.GetElapsedTime().count(), 2);
 		ASSERT_EQ(timer.IsActive(), true);
 	}
@@ -110,7 +275,7 @@ namespace TimerTests
 		timer.Start();
 
 		std::this_thread::sleep_for(3s);
-		
+
 		ASSERT_EQ(timer.ReachedThreshold(), true);
 	}
 }
@@ -122,7 +287,7 @@ namespace ObservableTests
 		Observable observable;
 		uint16_t linesCleared = 2;
 		std::shared_ptr<IObserverMock> observerMock = std::make_shared<IObserverMock>();
-		
+
 		EXPECT_CALL(*observerMock, OnLinesCleared(linesCleared))
 			.Times(1);
 
@@ -170,7 +335,7 @@ namespace ObservableTests
 		{
 			std::shared_ptr<IObserverMock> observerMock = std::make_shared<IObserverMock>();
 			observerMockWeak = observerMock;
-			
+
 			EXPECT_CALL(*observerMock, OnLinesCleared(linesCleared))
 				.Times(0);
 		}
@@ -179,9 +344,35 @@ namespace ObservableTests
 
 		observable.NotifyLinesCleared(linesCleared);
 	}
+
+	TEST(ObservableTest, NotifyGameOverWorks)
+	{
+		Observable observable;
+		uint16_t linesCleared = 2;
+		std::shared_ptr<IObserverMock> observerMock = std::make_shared<IObserverMock>();
+
+		EXPECT_CALL(*observerMock, OnGameOver());
+
+		observable.Register(observerMock);
+
+		observable.NotifyGameOver();
+	}
+
+	TEST(ObservableTest, NotifyRotateWorks)
+	{
+		Observable observable;
+		uint16_t linesCleared = 2;
+		std::shared_ptr<IObserverMock> observerMock = std::make_shared<IObserverMock>();
+
+		EXPECT_CALL(*observerMock, OnRotate());
+
+		observable.Register(observerMock);
+
+		observable.NotifyRotateBlock();
+	}
 }
 
-namespace GridTests 
+namespace GridTests
 {
 	std::vector<std::vector<Color>> CreateEmptyGridMatrix(Color emptyCellColor)
 	{
@@ -198,25 +389,20 @@ namespace GridTests
 		return gridMatrix;
 	}
 
-	TEST(GridTest, CheckConstructor) 
+	TEST(GridTest, CheckConstructor)
 	{
 		Color emptyCellColor{ 0, 0, 0, 0 };
-		auto expectedMatrixGrid{ CreateEmptyGridMatrix(emptyCellColor) };
+		auto expectedGridMatrix{ CreateEmptyGridMatrix(emptyCellColor) };
 
 		Grid grid{ emptyCellColor };
 
 		const auto& actualGridMatrix = grid.GetGrid();
 
 		ASSERT_EQ(grid.BlockCanMove(), false);
-		ASSERT_EQ(expectedMatrixGrid.size(), actualGridMatrix.size());
+		ASSERT_EQ(expectedGridMatrix.size(), actualGridMatrix.size());
 		for (size_t i = 0; i < actualGridMatrix.size(); i++)
 		{
-			ASSERT_EQ(expectedMatrixGrid[i].size(), actualGridMatrix[i].size());
-
-			for (size_t j = 0; j < actualGridMatrix[i].size(); j++)
-			{
-				ASSERT_EQ(expectedMatrixGrid[i][j], actualGridMatrix[i][j]);
-			}
+			EXPECT_EQ(expectedGridMatrix[i], actualGridMatrix[i]);
 		}
 	}
 }
