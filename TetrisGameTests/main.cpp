@@ -207,7 +207,7 @@ namespace GameTests
 		game.Update();
 	}
 
-	TEST(GameTest, OnRotateNotifyRotateGetsCalles)
+	TEST(GameTest, OnRotateNotifyRotateGetsCalled)
 	{
 		auto inputManagerMock = std::make_shared<IInputManagerMock>();
 		auto colorManagerMock = std::make_shared<IColorManagerMock>();
@@ -236,6 +236,31 @@ namespace GameTests
 		game.Register(observerMock);
 
 		game.Update();
+	}
+
+	TEST(GameTest, OnGameOverNotifyGameOverGetsCalled)
+	{
+		auto inputManagerMock = std::make_shared<IInputManagerMock>();
+		auto colorManagerMock = std::make_shared<IColorManagerMock>();
+		auto observerMock = std::make_shared<IObserverMock>();
+
+		Color emptyCellColor{ 0, 0, 0, 0 };
+		Color blockColor{ 1, 1, 1, 1 };
+
+		ON_CALL(*colorManagerMock, GetEmptyCellColor())
+			.WillByDefault(Return(emptyCellColor));
+		ON_CALL(*colorManagerMock, GetRandomBlockColor())
+			.WillByDefault(Return(blockColor));
+		ON_CALL(*inputManagerMock, Check(MoveDown))
+			.WillByDefault(Return(true));
+
+		EXPECT_CALL(*observerMock, OnGameOver);
+
+		Game game{ colorManagerMock, inputManagerMock };
+		game.Register(observerMock);
+
+		while (!game.IsGameOver())
+			game.Update();
 	}
 }
 
@@ -374,7 +399,7 @@ namespace ObservableTests
 
 namespace GridTests
 {
-	std::vector<std::vector<Color>> CreateEmptyGridMatrix(Color emptyCellColor)
+	std::vector<std::vector<Color>> CreateEmptyGridMatrix(const Color& emptyCellColor)
 	{
 		std::vector<std::vector<Color>> gridMatrix;
 		for (size_t i = 0; i < Grid::HEIGHT; i++)
