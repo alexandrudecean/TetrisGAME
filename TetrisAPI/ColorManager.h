@@ -9,8 +9,8 @@ namespace TetrisAPI
 	public:
 		ColorManager();
 
-		Color GetRandomBlockColor() const;
-		Color GetEmptyCellColor() const;
+		Color GetRandomBlockColor() const override;
+		Color GetEmptyCellColor() const override;
 
 	private:
 		static const Color Green;

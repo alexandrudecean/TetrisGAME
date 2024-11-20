@@ -10,9 +10,9 @@ namespace TetrisAPI
 	public:
 		Timer(const uint16_t& durationInSeconds);
 
-		inline bool IsActive()const { return m_isActive; }
-		seconds GetElapsedTime()const;
-		bool ReachedThreshold()const;
+		inline bool IsActive() const { return m_isActive; }
+		seconds GetElapsedTime() const;
+		bool ReachedThreshold() const;
 
 		void Start();
 		void Stop();

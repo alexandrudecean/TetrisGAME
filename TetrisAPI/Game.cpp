@@ -27,7 +27,6 @@ void Game::Update()
 		}
 		m_nextBlock = std::move(GetRandomBlock());
 		m_moveDownTimer.Start();
-		return;
 	}
 
 	if (m_inputManager->Check(MoveDown))
