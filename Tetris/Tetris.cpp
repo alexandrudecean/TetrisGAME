@@ -38,7 +38,7 @@ IGamePtr GetGame(const IInputManagerPtr& inputManager)
 void InitObservers(AudioPlayerPtr& audioPlayer, ScoreManagerPtr& scoreManager)
 {
 	using namespace TetrisAPI;
-	//audioPlayer = std::make_shared<AudioPlayer>();
+	audioPlayer = std::make_shared<AudioPlayer>();
 	scoreManager = std::make_shared<ScoreManager>();
 }
 
@@ -69,19 +69,17 @@ void ShowGame()
 	ScoreManagerPtr scoreManager;
 	
 	InitObservers(audioPlayer, scoreManager);
-	//RegisterObservers(game, { audioPlayer, scoreManager });
-	RegisterObservers(game, { scoreManager });
+	RegisterObservers(game, { audioPlayer, scoreManager });
 
 	while (WindowShouldClose() == false)
 	{
-		//UpdateMusicStream(audioPlayer->GetMusic());
+		UpdateMusicStream(audioPlayer->GetMusic());
 		game->Update();
 		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
 		{
 			game = std::move(GetGame(inputManager));
 			InitObservers(audioPlayer, scoreManager);
-			//RegisterObservers(game, { audioPlayer, scoreManager });
-			RegisterObservers(game, { scoreManager });
+			RegisterObservers(game, { audioPlayer, scoreManager });
 		}
 
 		BeginDrawing();
