@@ -15,6 +15,7 @@ namespace TetrisAPI
 		void NotifyLinesCleared(uint16_t numLines);
 		void NotifyGameOver();
 		void NotifyRotateBlock();
+		void NotifyMoveDownBlock();
 	private:
 		std::vector<IObserverPtr> m_observers;
 	};

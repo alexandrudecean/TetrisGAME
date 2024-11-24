@@ -71,3 +71,19 @@ void Observable::NotifyRotateBlock()
         }
     }
 }
+
+void TetrisAPI::Observable::NotifyMoveDownBlock()
+{
+    for (auto it = m_observers.begin(); it != m_observers.end();)
+    {
+        if (auto sp = it->lock())
+        {
+            sp->OnMoveDown();
+            ++it;
+        }
+        else
+        {
+            it = m_observers.erase(it);
+        }
+    }
+}

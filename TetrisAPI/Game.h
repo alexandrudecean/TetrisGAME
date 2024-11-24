@@ -33,7 +33,7 @@ namespace TetrisAPI
 		Grid m_grid;
 		Block m_nextBlock;
 		bool m_gameIsOver;
-		
+
 		Timer m_moveDownTimer;
 		
 	};

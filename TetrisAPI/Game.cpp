@@ -32,6 +32,7 @@ void Game::Update()
 	if (m_inputManager->Check(MoveDown))
 	{
 		m_grid.MoveDown();
+		NotifyMoveDownBlock();
 		return;
 	}
 

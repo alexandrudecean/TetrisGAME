@@ -10,5 +10,6 @@ namespace TetrisAPI
 		virtual void OnLinesCleared(uint16_t numLines) = 0;
 		virtual void OnRotate() = 0;
 		virtual void OnGameOver() = 0;
+		virtual void OnMoveDown() = 0;
 	};
 }

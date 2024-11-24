@@ -17,3 +17,8 @@ void ScoreManager::OnLinesCleared(uint16_t numLines)
     else
         m_score += 1000;
 }
+
+void TetrisAPI::ScoreManager::OnMoveDown()
+{
+    m_score += 10;
+}
