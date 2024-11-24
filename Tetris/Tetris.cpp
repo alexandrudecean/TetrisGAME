@@ -85,6 +85,7 @@ void ShowGame()
 		BeginDrawing();
 		ClearBackground(BLACK);
 
+		DrawnGooLuck(font,game);
 		DrawGrid(game->GetGrid());
 		DrawScore(font, scoreManager);
 		DrawNextBlock(font, game);

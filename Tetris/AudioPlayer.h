@@ -1,12 +1,12 @@
 #pragma once
 #include <raylib.h>
 #include <memory>
-#include "IObserver.h"
+#include "BaseObserver.h"
 
 class AudioPlayer;
 using AudioPlayerPtr = std::shared_ptr<AudioPlayer>;
 
-class AudioPlayer :public TetrisAPI::IObserver
+class AudioPlayer :public TetrisAPI::BaseObserver
 {
 public:
 	AudioPlayer();

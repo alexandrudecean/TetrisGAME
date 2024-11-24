@@ -41,19 +41,19 @@ void DrawScore(const Font& font, const ScoreManagerPtr& scoreManager)
 
 void DrawNextBlock(const Font& font, const IGamePtr& game)
 {
-	DrawTextEx(font, "Next:", { 540, 245 }, 48, 2, WHITE);
-	DrawRectangleRounded({ 520, 300, 200, 220 }, 0.3, 6, LIGHTGRAY);
+	DrawTextEx(font, "Next:", { 540, 545 }, 48, 2, WHITE);
+	DrawRectangleRounded({ 520, 600, 200, 220 }, 0.3, 6, LIGHTGRAY);
 
 	switch (game->GetNextBlock().GetBlockType())
 	{
 	case TetrisAPI::EBlockType::I:
-		DrawBlock(game->GetNextBlock(), 555, 320);
+		DrawBlock(game->GetNextBlock(), 555, 620);
 		break;
 	case TetrisAPI::EBlockType::O:
-		DrawBlock(game->GetNextBlock(), 570, 350);
+		DrawBlock(game->GetNextBlock(), 570, 650);
 		break;
 	default:
-		DrawBlock(game->GetNextBlock(), 570, 320);
+		DrawBlock(game->GetNextBlock(), 570, 620);
 		break;
 	}
 }
@@ -68,4 +68,9 @@ void DrawGameOver(const Font& font, const IGamePtr& game)
 		DrawTextEx(font, "For reset, press:", { 60, 385 }, 88, 2,BLACK);
 		DrawTextEx(font, "ENTER", { 170, 520 }, 130, 2,BLACK);
 	}
+}
+
+void DrawnGooLuck(const Font& font, const IGamePtr& game)
+{
+	DrawTextEx(font, "Good Luck :D", { 490, 350 }, 48, 2, WHITE);
 }

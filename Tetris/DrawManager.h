@@ -19,6 +19,7 @@ void DrawBlock(const APIBlock& block, uint16_t offsetX, uint16_t offsetY);
 void DrawScore(const Font& font, const ScoreManagerPtr& scoreManager);
 void DrawNextBlock(const Font& font, const IGamePtr& game);
 void DrawGameOver(const Font& font, const IGamePtr& game);
+void DrawnGooLuck(const Font& font, const IGamePtr& game);
 
 
 
