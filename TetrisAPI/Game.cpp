@@ -39,6 +39,8 @@ void Game::Update()
 	if (m_moveDownTimer.ReachedThreshold())
 	{
 		m_grid.Move(Position::Down);
+		if (!m_grid.BlockCanMove())
+			NotifyMoveDownBlock();
 		m_moveDownTimer.Start();
 	}
 
