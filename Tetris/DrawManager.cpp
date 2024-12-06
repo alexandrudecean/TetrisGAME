@@ -58,6 +58,8 @@ void DrawNextBlock(const Font& font, const IGamePtr& game)
 	}
 }
 
+//salut
+
 void DrawGameOver(const Font& font, const IGamePtr& game)
 {
 	if (game->IsGameOver())
