@@ -2,14 +2,16 @@
 
 using namespace TetrisAPI;
 
-Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputManager) :
+Game::Game(const IColorManagerPtr& colorManager, const IInputManagerPtr& inputManager, IGameModeStrategyPtr gameModeStrategy) :
 	m_colorManager{ colorManager },
 	m_inputManager{ inputManager },
 	m_grid{ m_colorManager->GetEmptyCellColor() },
 	m_nextBlock{ std::move(GetRandomBlock()) },
 	m_gameIsOver{ false },
-	m_moveDownTimer{ 1 }
-{}
+	m_gameModeStrategy{ std::move(gameModeStrategy) },
+	m_moveDownTimer{ m_gameModeStrategy->GetMoveDownInterval() }
+{
+}
 
 void Game::Update()
 {
@@ -49,6 +51,7 @@ void Game::Update()
 		if (m_grid.Rotate())
 			NotifyRotateBlock();
 	}
+
 	if (m_inputManager->Check(MoveLeft))
 	{
 		m_grid.Move(Position::Left);

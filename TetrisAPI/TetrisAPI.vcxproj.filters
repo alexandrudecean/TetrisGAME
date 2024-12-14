@@ -92,5 +92,11 @@
     <ClInclude Include="BaseObserver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="IGameModeStrategy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameModeStrategies.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
 #include "InputManager.h"
 #include "ColorManager.h"
 #include "AudioPlayer.h"
+#include <GameModeStrategies.h>
 
 
 IInputManagerPtr GetInputManager()
@@ -28,10 +29,10 @@ IColorManagerPtr GetColorManager()
 	return std::make_shared<ColorManager>(colorManager);
 }
 
-IGamePtr GetGame(const IInputManagerPtr& inputManager)
+IGamePtr GetGame(const IInputManagerPtr& inputManager, IGameModeStrategyPtr gameModeStrategy)
 {
 	using namespace TetrisAPI;
-	Game game{ std::move(GetColorManager()), inputManager };
+	Game game{ std::move(GetColorManager()), inputManager, std::move(gameModeStrategy) };
 	return std::make_unique<Game>(game);
 }
 
@@ -44,7 +45,7 @@ void InitObservers(AudioPlayerPtr& audioPlayer, ScoreManagerPtr& scoreManager)
 
 void RegisterObservers(IGamePtr& game, const std::vector<IObserverPtr>& observers)
 {
-	std::ranges::for_each(observers, [&game](const IObserverPtr& observer) 
+	std::ranges::for_each(observers, [&game](const IObserverPtr& observer)
 		{
 			game->Register(observer);
 		});
@@ -62,12 +63,13 @@ void ShowGame()
 	SetTargetFPS(60);
 
 	auto inputManager = GetInputManager();
-	
-	IGamePtr game(std::move(GetGame(inputManager)));
+
+	IGameModeStrategyPtr gameModeStrategy = std::make_shared<TetrisAPI::EasyModeStrategy>(); //CHANGE HERE
+	IGamePtr game(std::move(GetGame(inputManager, gameModeStrategy)));
 
 	AudioPlayerPtr audioPlayer;
 	ScoreManagerPtr scoreManager;
-	
+
 	InitObservers(audioPlayer, scoreManager);
 	RegisterObservers(game, { audioPlayer, scoreManager });
 
@@ -77,7 +79,7 @@ void ShowGame()
 		game->Update();
 		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
 		{
-			game = std::move(GetGame(inputManager));
+			game = std::move(GetGame(inputManager, gameModeStrategy));
 			InitObservers(audioPlayer, scoreManager);
 			RegisterObservers(game, { audioPlayer, scoreManager });
 		}
@@ -85,10 +87,13 @@ void ShowGame()
 		BeginDrawing();
 		ClearBackground(BLACK);
 
-		DrawnGooLuck(font,game);
+		DrawGoodLuckMessage(font, game);
 		DrawGrid(game->GetGrid());
 		DrawScore(font, scoreManager);
-		DrawNextBlock(font, game);
+		if (game->ShowNextBlocks())
+		{
+			DrawNextBlock(font, game);
+		}
 		DrawGameOver(font, game);
 
 		EndDrawing();

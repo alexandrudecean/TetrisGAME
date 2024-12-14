@@ -10,7 +10,7 @@ Color GetRaylibColor(const APIColor& color)
 void DrawGrid(const APIGrid& grid)
 {
 	const auto& matrixGrid = grid.GetGrid();
-	for (size_t row = 0; row < APIGrid::HEIGHT;row++)
+	for (size_t row = 0; row < APIGrid::HEIGHT; row++)
 	{
 		for (size_t column = 0; column < APIGrid::WIDTH; column++)
 		{
@@ -26,7 +26,7 @@ void DrawBlock(const APIBlock& block, uint16_t offsetX, uint16_t offsetY)
 	for (const auto& square : squares)
 	{
 		Color color = GetRaylibColor(block.GetColor());
-		DrawRectangle(square.GetX() * CELL_SIZE + offsetX+ CELL_BORDER, square.GetY() * CELL_SIZE + offsetY+ CELL_BORDER, CELL_SIZE - CELL_BORDER, CELL_SIZE - CELL_BORDER,color );
+		DrawRectangle(square.GetX() * CELL_SIZE + offsetX + CELL_BORDER, square.GetY() * CELL_SIZE + offsetY + CELL_BORDER, CELL_SIZE - CELL_BORDER, CELL_SIZE - CELL_BORDER, color);
 	}
 }
 
@@ -58,8 +58,6 @@ void DrawNextBlock(const Font& font, const IGamePtr& game)
 	}
 }
 
-//salut
-
 void DrawGameOver(const Font& font, const IGamePtr& game)
 {
 	if (game->IsGameOver())
@@ -67,12 +65,12 @@ void DrawGameOver(const Font& font, const IGamePtr& game)
 		Color color = { 200, 200, 200, 128 };
 		DrawRectangleRounded({ 0, 0, 800, 910 }, 0, 6, color);
 		DrawTextEx(font, "GAME OVER", { 120, 245 }, 108, 2, BLACK);
-		DrawTextEx(font, "For reset, press:", { 60, 385 }, 88, 2,BLACK);
-		DrawTextEx(font, "ENTER", { 170, 520 }, 130, 2,BLACK);
+		DrawTextEx(font, "For reset, press:", { 60, 385 }, 88, 2, BLACK);
+		DrawTextEx(font, "ENTER", { 170, 520 }, 130, 2, BLACK);
 	}
 }
 
-void DrawnGooLuck(const Font& font, const IGamePtr& game)
+void DrawGoodLuckMessage(const Font& font, const IGamePtr& game)
 {
 	DrawTextEx(font, "Good Luck :D", { 490, 350 }, 48, 2, WHITE);
 }

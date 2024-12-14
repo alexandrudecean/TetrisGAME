@@ -12,6 +12,7 @@ namespace TetrisAPI
 		virtual const Block& GetNextBlock() const = 0;
 		virtual const Grid& GetGrid() const = 0;
 		virtual bool IsGameOver() const = 0;
+		virtual bool ShowNextBlocks() const = 0;
 
 		virtual ~IGame() = default;
 	};
