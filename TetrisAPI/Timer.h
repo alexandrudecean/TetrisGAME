@@ -8,10 +8,10 @@ namespace TetrisAPI
 	class Timer
 	{
 	public:
-		Timer(const uint16_t& durationInSeconds);
+		Timer(const uint16_t& durationInMilliseconds);
 
 		inline bool IsActive() const { return m_isActive; }
-		seconds GetElapsedTime() const;
+		milliseconds GetElapsedTime() const;
 		bool ReachedThreshold() const;
 
 		void Start();
@@ -19,7 +19,7 @@ namespace TetrisAPI
 	private:
 		steady_clock::time_point m_startTime;
 		bool m_isActive;
-		const seconds m_duration;
+		const milliseconds m_duration;
 	};
 }
 

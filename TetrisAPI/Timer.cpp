@@ -2,15 +2,16 @@
 
 using namespace TetrisAPI;
 
-Timer::Timer(const uint16_t& durationInSeconds) :
-	m_duration{ seconds(durationInSeconds) },
+Timer::Timer(const uint16_t& durationInMilliseconds) :
+	m_duration{ milliseconds(durationInMilliseconds) },
 	m_isActive{ false }
-{}
+{
+}
 
-seconds Timer::GetElapsedTime() const
+milliseconds Timer::GetElapsedTime() const
 {
 	auto currentTime{ high_resolution_clock::now() };
-	return duration_cast<seconds>(currentTime - m_startTime);
+	return duration_cast<milliseconds>(currentTime - m_startTime);
 }
 
 bool Timer::ReachedThreshold() const
@@ -28,4 +29,3 @@ void Timer::Stop()
 {
 	m_isActive = false;
 }
-

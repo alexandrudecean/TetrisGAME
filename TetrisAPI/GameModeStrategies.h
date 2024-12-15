@@ -7,7 +7,7 @@ namespace TetrisAPI
 	public:
 		uint16_t GetMoveDownInterval() const override
 		{
-			return 1;
+			return 1000;
 		}
 
 		bool ShowNextBlocks() const override
@@ -21,7 +21,7 @@ namespace TetrisAPI
 	public:
 		uint16_t GetMoveDownInterval() const override
 		{
-			return 0.9998;
+			return 500;
 		}
 
 		bool ShowNextBlocks() const override
