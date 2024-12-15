@@ -51,10 +51,56 @@ void RegisterObservers(IGamePtr& game, const std::vector<IObserverPtr>& observer
 		});
 }
 
-void ShowGame()
+IGameModeStrategyPtr ShowMenu()
+{
+	using namespace TetrisAPI;
+	Font font = GetFontDefault();
+	InitWindow(800, 600, "Tetris Menu");
+	SetTargetFPS(60);
+
+	IGameModeStrategyPtr selectedStrategy = nullptr;
+
+	while (!WindowShouldClose())
+	{
+		BeginDrawing();
+		ClearBackground(::BLACK);
+
+		DrawTextEx(font, "TETRIS", { 250, 150 }, 80, 2, ::WHITE);
+
+		Rectangle easyButton = { 300, 300, 200, 60 };
+		DrawRectangleRec(easyButton, ::GREEN);
+		DrawText("EASY", 355, 315, 30, ::BLACK);
+
+		Rectangle hardButton = { 300, 400, 200, 60 };
+		DrawRectangleRec(hardButton, ::RED);
+		DrawText("HARD", 350, 415, 30, ::BLACK);
+
+		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
+		{
+			Vector2 mousePos = GetMousePosition();
+
+			if (CheckCollisionPointRec(mousePos, easyButton))
+			{
+				selectedStrategy = std::make_shared<EasyModeStrategy>();
+				break;
+			}
+			if (CheckCollisionPointRec(mousePos, hardButton))
+			{
+				selectedStrategy = std::make_shared<HardModeStrategy>();
+				break;
+			}
+		}
+
+		EndDrawing();
+	}
+
+	CloseWindow();
+	return selectedStrategy;
+}
+
+void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 {
 	Font font = GetFontDefault();
-
 	const int screenWidth = 800;
 	const int screenHeight = 910;
 
@@ -63,8 +109,6 @@ void ShowGame()
 	SetTargetFPS(60);
 
 	auto inputManager = GetInputManager();
-
-	IGameModeStrategyPtr gameModeStrategy = std::make_shared<TetrisAPI::EasyModeStrategy>(); //CHANGE HERE
 	IGamePtr game(std::move(GetGame(inputManager, gameModeStrategy)));
 
 	AudioPlayerPtr audioPlayer;
@@ -73,13 +117,13 @@ void ShowGame()
 	InitObservers(audioPlayer, scoreManager);
 	RegisterObservers(game, { audioPlayer, scoreManager });
 
-	while (WindowShouldClose() == false)
+	while (!WindowShouldClose())
 	{
 		UpdateMusicStream(audioPlayer->GetMusic());
 		game->Update();
-		if (game->IsGameOver() && inputManager->Check(TetrisAPI::Reset))
+		if (game->IsGameOver() && inputManager->Check(TetrisAPI::EInputType::Reset))
 		{
-			game = std::move(GetGame(inputManager, gameModeStrategy));
+			game = GetGame(inputManager, gameModeStrategy);
 			InitObservers(audioPlayer, scoreManager);
 			RegisterObservers(game, { audioPlayer, scoreManager });
 		}
@@ -90,6 +134,7 @@ void ShowGame()
 		DrawGoodLuckMessage(font, game);
 		DrawGrid(game->GetGrid());
 		DrawScore(font, scoreManager);
+
 		if (game->ShowNextBlocks())
 		{
 			DrawNextBlock(font, game);
@@ -104,8 +149,15 @@ void ShowGame()
 }
 
 
+
 int main()
 {
-	ShowGame();
+	auto gameModeStrategy = ShowMenu();
+
+	if (gameModeStrategy) 
+	{
+		ShowGame(gameModeStrategy);
+	}
+
 	return 0;
 }
