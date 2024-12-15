@@ -51,6 +51,12 @@ void RegisterObservers(IGamePtr& game, const std::vector<IObserverPtr>& observer
 		});
 }
 
+void ResetInputState()
+{
+	while (GetKeyPressed() != 0);
+}
+
+
 IGameModeStrategyPtr ShowMenu()
 {
 	using namespace TetrisAPI;
@@ -104,12 +110,17 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 	const int screenWidth = 800;
 	const int screenHeight = 910;
 
+	if (IsWindowReady())
+	{
+		CloseWindow();
+	}
+
 	InitWindow(screenWidth, screenHeight, "Tetris Game");
 	InitAudioDevice();
 	SetTargetFPS(60);
 
 	auto inputManager = GetInputManager();
-	IGamePtr game(std::move(GetGame(inputManager, gameModeStrategy)));
+	IGamePtr game = GetGame(inputManager, gameModeStrategy);
 
 	AudioPlayerPtr audioPlayer;
 	ScoreManagerPtr scoreManager;
@@ -121,11 +132,21 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 	{
 		UpdateMusicStream(audioPlayer->GetMusic());
 		game->Update();
-		if (game->IsGameOver() && inputManager->Check(TetrisAPI::EInputType::Reset))
+
+		if (game->IsGameOver())
 		{
-			game = GetGame(inputManager, gameModeStrategy);
-			InitObservers(audioPlayer, scoreManager);
-			RegisterObservers(game, { audioPlayer, scoreManager });
+			if (inputManager->Check(TetrisAPI::EInputType::Reset))
+			{
+				game = GetGame(inputManager, gameModeStrategy);
+				InitObservers(audioPlayer, scoreManager);
+				RegisterObservers(game, { audioPlayer, scoreManager });
+			}
+
+			if (IsKeyPressed(KEY_SPACE))
+			{
+				ResetInputState(); 
+				break;
+			}
 		}
 
 		BeginDrawing();
@@ -148,13 +169,22 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 	CloseWindow();
 }
 
+
+
 int main()
 {
-	auto gameModeStrategy = ShowMenu();
-
-	if (gameModeStrategy) 
+	while (true) 
 	{
-		ShowGame(gameModeStrategy);
+		auto gameModeStrategy = ShowMenu(); 
+
+		if (gameModeStrategy) 
+		{
+			ShowGame(gameModeStrategy); 
+		}
+		else
+		{
+			break; 
+		}
 	}
 
 	return 0;

@@ -64,9 +64,12 @@ void DrawGameOver(const Font& font, const IGamePtr& game)
 	{
 		Color color = { 200, 200, 200, 128 };
 		DrawRectangleRounded({ 0, 0, 800, 910 }, 0, 6, color);
-		DrawTextEx(font, "GAME OVER", { 120, 245 }, 108, 2, BLACK);
-		DrawTextEx(font, "For reset, press:", { 60, 385 }, 88, 2, BLACK);
-		DrawTextEx(font, "ENTER", { 170, 520 }, 130, 2, BLACK);
+		DrawTextEx(font, "GAME OVER", { 120, 200 }, 108, 2, BLACK);
+		DrawTextEx(font, "For reset, press:", { 60, 340 }, 48, 2, BLACK);
+		DrawTextEx(font, "ENTER", { 300, 400 }, 60, 2, BLACK);
+		DrawTextEx(font, "Return to menu, press:", { 60, 500 }, 48, 2, BLACK);
+		DrawTextEx(font, "SPACE", { 300, 560 }, 60, 2, BLACK);
+
 	}
 }
 
