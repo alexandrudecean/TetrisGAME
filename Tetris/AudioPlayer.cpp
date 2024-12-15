@@ -1,4 +1,4 @@
-#include "AudioPlayer.h"
+﻿#include "AudioPlayer.h"
 
 AudioPlayer::AudioPlayer()
 {
@@ -22,6 +22,7 @@ void AudioPlayer::OnRotate()
 
 void AudioPlayer::OnGameOver()
 {
+	StopMusicStream(m_music);
 	PlaySound(m_gameOverSound);
 }
 

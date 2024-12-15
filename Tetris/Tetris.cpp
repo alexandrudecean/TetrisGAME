@@ -148,8 +148,6 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 	CloseWindow();
 }
 
-
-
 int main()
 {
 	auto gameModeStrategy = ShowMenu();
