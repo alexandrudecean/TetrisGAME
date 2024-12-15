@@ -18,13 +18,12 @@ namespace TetrisAPI
 
 	inline EBlockType GetRandomBlockType()
 	{
-		std::random_device rd;  		
-		std::mt19937 gen(rd()); 
-		std::uniform_int_distribution<> dist(0, blockTypes.size() - 1);  
-		
-		uint16_t randomIndex = dist(gen);
+		static std::mt19937 gen(std::random_device{}()); 
+		static std::uniform_int_distribution<> dist(0, blockTypes.size() - 1);
 
+		uint16_t randomIndex = dist(gen);
 		return blockTypes[randomIndex];
 	}
+
 
 }
