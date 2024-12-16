@@ -92,6 +92,13 @@ void ResetInputState()
 	while (GetKeyPressed() != 0);
 }
 
+
+void ReinitWindow(const char* title, int width, int height)
+{
+	CloseWindow(); 
+	InitWindow(width, height, title); 
+}
+
 /**
  * @brief Afișează meniul principal al jocului și permite utilizatorului să selecteze modul de joc.
  *
@@ -101,9 +108,6 @@ IGameModeStrategyPtr ShowMenu()
 {
 	using namespace TetrisAPI;
 	Font font = GetFontDefault();
-	InitWindow(800, 600, "Tetris Menu");
-	SetTargetFPS(60);
-
 	IGameModeStrategyPtr selectedStrategy = nullptr;
 
 	while (!WindowShouldClose())
@@ -140,9 +144,10 @@ IGameModeStrategyPtr ShowMenu()
 		EndDrawing();
 	}
 
-	CloseWindow();
 	return selectedStrategy;
 }
+
+
 
 
 /**
@@ -153,18 +158,6 @@ IGameModeStrategyPtr ShowMenu()
 void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 {
 	Font font = GetFontDefault();
-	const int screenWidth = 800;
-	const int screenHeight = 910;
-
-	if (IsWindowReady())
-	{
-		CloseWindow();
-	}
-
-	InitWindow(screenWidth, screenHeight, "Tetris Game");
-	InitAudioDevice();
-	SetTargetFPS(60);
-
 	auto inputManager = GetInputManager();
 	IGamePtr game = GetGame(inputManager, gameModeStrategy);
 
@@ -188,9 +181,8 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 				RegisterObservers(game, { audioPlayer, scoreManager });
 			}
 
-			if (IsKeyPressed(KEY_SPACE))
+			if (IsKeyPressed(KEY_SPACE)) 
 			{
-				ResetInputState(); 
 				break;
 			}
 		}
@@ -210,10 +202,9 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 
 		EndDrawing();
 	}
-
-	CloseAudioDevice();
-	CloseWindow();
 }
+
+
 
 
 /**
@@ -223,11 +214,18 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
  */
 int main()
 {
-	while (true) 
+	const int screenWidth = 800;
+	const int screenHeight = 910;
+
+	InitWindow(screenWidth, screenHeight, "Tetris Game");
+	InitAudioDevice();
+	SetTargetFPS(60);
+
+	while (!WindowShouldClose())
 	{
 		auto gameModeStrategy = ShowMenu(); 
 
-		if (gameModeStrategy) 
+		if (gameModeStrategy)
 		{
 			ShowGame(gameModeStrategy); 
 		}
@@ -237,5 +235,8 @@ int main()
 		}
 	}
 
+	CloseAudioDevice();
+	CloseWindow();
 	return 0;
 }
+
