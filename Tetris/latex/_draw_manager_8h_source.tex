@@ -1,0 +1,31 @@
+\doxysection{Draw\+Manager.\+h}
+\hypertarget{_draw_manager_8h_source}{}\label{_draw_manager_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Game.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}ScoreManager.h"{}}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{keyword}{using\ }IGamePtr\ =\ std::unique\_ptr<TetrisAPI::IGame>;}
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ }ScoreManagerPtr\ =\ std::shared\_ptr<TetrisAPI::ScoreManager>;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ }APIColor\ =\ TetrisAPI::Color;}
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ }APIGrid\ =\ TetrisAPI::Grid;}
+\DoxyCodeLine{00010\ \textcolor{keyword}{using\ }APIBlock\ =\ TetrisAPI::Block;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint16\_t\ CELL\_SIZE\ =\ 45;}
+\DoxyCodeLine{00013\ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint16\_t\ CELL\_BORDER\ =\ 5;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ Color\ GetRaylibColor(\textcolor{keyword}{const}\ APIColor\&\ color);}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{void}\ DrawGrid(\textcolor{keyword}{const}\ APIGrid\&\ grid);}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{void}\ DrawBlock(\textcolor{keyword}{const}\ APIBlock\&\ block,\ uint16\_t\ offsetX,\ uint16\_t\ offsetY);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{void}\ DrawScore(\textcolor{keyword}{const}\ Font\&\ font,\ \textcolor{keyword}{const}\ ScoreManagerPtr\&\ scoreManager);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{void}\ DrawNextBlock(\textcolor{keyword}{const}\ Font\&\ font,\ \textcolor{keyword}{const}\ IGamePtr\&\ game);}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{void}\ DrawGameOver(\textcolor{keyword}{const}\ Font\&\ font,\ \textcolor{keyword}{const}\ IGamePtr\&\ game);}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ DrawGoodLuckMessage(\textcolor{keyword}{const}\ Font\&\ font,\ \textcolor{keyword}{const}\ IGamePtr\&\ game);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+
+\end{DoxyCode}

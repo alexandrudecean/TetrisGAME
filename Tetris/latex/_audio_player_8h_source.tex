@@ -1,0 +1,31 @@
+\doxysection{Audio\+Player.\+h}
+\hypertarget{_audio_player_8h_source}{}\label{_audio_player_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BaseObserver.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audio_player}{AudioPlayer}};}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }AudioPlayerPtr\ =\ std::shared\_ptr<AudioPlayer>;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audio_player}{AudioPlayer}}\ :\textcolor{keyword}{public}\ TetrisAPI::BaseObserver}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_audio_player}{AudioPlayer}}();}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ OnLinesCleared(uint16\_t\ numLines);}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ OnRotate();}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ OnGameOver();}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ Music\ GetMusic()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_music;\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_audio_player}{\string~AudioPlayer}}();}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ Music\ m\_music;}
+\DoxyCodeLine{00022\ \ \ \ \ Sound\ m\_rotateSound;}
+\DoxyCodeLine{00023\ \ \ \ \ Sound\ m\_clearedSound;}
+\DoxyCodeLine{00024\ \ \ \ \ Sound\ m\_gameOverSound;}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+
+\end{DoxyCode}
