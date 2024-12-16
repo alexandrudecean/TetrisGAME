@@ -1,9 +1,15 @@
-#include <iostream>
+﻿#include <iostream>
 #include "DrawManager.h"
 #include "InputManager.h"
 #include "ColorManager.h"
 #include "AudioPlayer.h"
 #include <GameModeStrategies.h>
+
+/**
+ * @brief Creeaza și returnează un obiect InputManager configurat cu mapările de taste.
+ *
+ * @return IInputManagerPtr Pointer inteligent către un obiect InputManager configurat.
+ */
 
 
 IInputManagerPtr GetInputManager()
@@ -22,12 +28,26 @@ IInputManagerPtr GetInputManager()
 	return std::make_shared<InputManager>(inputManager);
 }
 
+
+/**
+ * @brief Creează și returnează un obiect ColorManager.
+ *
+ * @return IColorManagerPtr Pointer inteligent către un obiect ColorManager.
+ */
+
 IColorManagerPtr GetColorManager()
 {
 	using namespace TetrisAPI;
 	ColorManager colorManager;
 	return std::make_shared<ColorManager>(colorManager);
 }
+/**
+ * @brief Creează și returnează un obiect Game.
+ *
+ * @param inputManager Pointer inteligent către un obiect InputManager.
+ * @param gameModeStrategy Pointer inteligent către strategia de mod de joc selectată.
+ * @return IGamePtr Pointer inteligent către un obiect Game.
+ */
 
 IGamePtr GetGame(const IInputManagerPtr& inputManager, IGameModeStrategyPtr gameModeStrategy)
 {
@@ -36,6 +56,13 @@ IGamePtr GetGame(const IInputManagerPtr& inputManager, IGameModeStrategyPtr game
 	return std::make_unique<Game>(game);
 }
 
+/**
+ * @brief Inițializează observatorii jocului, cum ar fi AudioPlayer și ScoreManager.
+ *
+ * @param audioPlayer Referință la un pointer inteligent către AudioPlayer.
+ * @param scoreManager Referință la un pointer inteligent către ScoreManager.
+ */
+
 void InitObservers(AudioPlayerPtr& audioPlayer, ScoreManagerPtr& scoreManager)
 {
 	using namespace TetrisAPI;
@@ -43,6 +70,12 @@ void InitObservers(AudioPlayerPtr& audioPlayer, ScoreManagerPtr& scoreManager)
 	scoreManager = std::make_shared<ScoreManager>();
 }
 
+/**
+ * @brief Înregistrează observatorii pentru un obiect Game.
+ *
+ * @param game Pointer inteligent către un obiect Game.
+ * @param observers Vector de pointeri către observatori.
+ */
 void RegisterObservers(IGamePtr& game, const std::vector<IObserverPtr>& observers)
 {
 	std::ranges::for_each(observers, [&game](const IObserverPtr& observer)
@@ -51,12 +84,19 @@ void RegisterObservers(IGamePtr& game, const std::vector<IObserverPtr>& observer
 		});
 }
 
+/**
+ * @brief Resetează starea tastelor apăsate.
+ */
 void ResetInputState()
 {
 	while (GetKeyPressed() != 0);
 }
 
-
+/**
+ * @brief Afișează meniul principal al jocului și permite utilizatorului să selecteze modul de joc.
+ *
+ * @return IGameModeStrategyPtr Pointer inteligent către strategia de mod de joc selectată sau nullptr dacă fereastra este închisă.
+ */
 IGameModeStrategyPtr ShowMenu()
 {
 	using namespace TetrisAPI;
@@ -104,6 +144,12 @@ IGameModeStrategyPtr ShowMenu()
 	return selectedStrategy;
 }
 
+
+/**
+ * @brief Afișează jocul principal, gestionând logica și redarea grafică.
+ *
+ * @param gameModeStrategy Pointer inteligent către strategia de mod de joc selectată.
+ */
 void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 {
 	Font font = GetFontDefault();
@@ -170,7 +216,11 @@ void ShowGame(const IGameModeStrategyPtr& gameModeStrategy)
 }
 
 
-
+/**
+ * @brief Punctul de intrare al aplicației. Afișează meniul și lansează jocul pe baza selecției utilizatorului.
+ *
+ * @return int Codul de ieșire al aplicației.
+ */
 int main()
 {
 	while (true) 
