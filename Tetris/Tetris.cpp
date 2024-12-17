@@ -1,4 +1,13 @@
-﻿#include <iostream>
+﻿/**
+ * @file main.cpp
+ * @brief Implementarea principală a jocului Tetris, incluzând meniul, gestionarea input-urilor și logica de joc.
+ *
+ * Acest fișier conține funcțiile necesare pentru inițializarea jocului, interacțiunea utilizatorului și afișarea
+ * conținutului grafic. Este punctul de intrare al aplicației Tetris.
+ *
+ */
+
+#include <iostream>
 #include "DrawManager.h"
 #include "InputManager.h"
 #include "ColorManager.h"

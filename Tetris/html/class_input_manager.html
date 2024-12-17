@@ -99,16 +99,73 @@ Inheritance diagram for InputManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8e049b45caee6bfda3888d6456fc4ac5" id="r_a8e049b45caee6bfda3888d6456fc4ac5"><td class="memItemLeft" align="right" valign="top"><a id="a8e049b45caee6bfda3888d6456fc4ac5" name="a8e049b45caee6bfda3888d6456fc4ac5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Check</b> (TetrisAPI::EInputType inputType)</td></tr>
+<tr class="memitem:a8e049b45caee6bfda3888d6456fc4ac5" id="r_a8e049b45caee6bfda3888d6456fc4ac5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e049b45caee6bfda3888d6456fc4ac5">Check</a> (TetrisAPI::EInputType inputType)</td></tr>
+<tr class="memdesc:a8e049b45caee6bfda3888d6456fc4ac5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifică dacă un anumit input este activ.  <br /></td></tr>
 <tr class="separator:a8e049b45caee6bfda3888d6456fc4ac5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6859fdf7f72ff3effbe86c87e901ecb6" id="r_a6859fdf7f72ff3effbe86c87e901ecb6"><td class="memItemLeft" align="right" valign="top"><a id="a6859fdf7f72ff3effbe86c87e901ecb6" name="a6859fdf7f72ff3effbe86c87e901ecb6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Register</b> (TetrisAPI::EInputType inputType, uint16_t key)</td></tr>
+<tr class="memitem:a6859fdf7f72ff3effbe86c87e901ecb6" id="r_a6859fdf7f72ff3effbe86c87e901ecb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6859fdf7f72ff3effbe86c87e901ecb6">Register</a> (TetrisAPI::EInputType inputType, uint16_t key)</td></tr>
+<tr class="memdesc:a6859fdf7f72ff3effbe86c87e901ecb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Înregistrează o tastă pentru un anumit tip de input.  <br /></td></tr>
 <tr class="separator:a6859fdf7f72ff3effbe86c87e901ecb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8e049b45caee6bfda3888d6456fc4ac5" name="a8e049b45caee6bfda3888d6456fc4ac5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e049b45caee6bfda3888d6456fc4ac5">&#9670;&#160;</a></span>Check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool InputManager::Check </td>
+          <td>(</td>
+          <td class="paramtype">TetrisAPI::EInputType</td>          <td class="paramname"><span class="paramname"><em>inputType</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Verifică dacă un anumit input este activ. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputType</td><td>Tipul de input definit în TetrisAPI::EInputType. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true dacă input-ul este activ, false în caz contrar. </dd></dl>
+
+</div>
+</div>
+<a id="a6859fdf7f72ff3effbe86c87e901ecb6" name="a6859fdf7f72ff3effbe86c87e901ecb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6859fdf7f72ff3effbe86c87e901ecb6">&#9670;&#160;</a></span>Register()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void InputManager::Register </td>
+          <td>(</td>
+          <td class="paramtype">TetrisAPI::EInputType</td>          <td class="paramname"><span class="paramname"><em>inputType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>key</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Înregistrează o tastă pentru un anumit tip de input. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputType</td><td>Tipul de input definit în TetrisAPI::EInputType. </td></tr>
+    <tr><td class="paramname">key</td><td>Codul tastei (uint16_t) care trebuie asociată input-ului. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_input_manager_8h_source.html">InputManager.h</a></li>
-<li><b>InputManager.cpp</b></li>
+<li><a class="el" href="_input_manager_8cpp.html">InputManager.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
