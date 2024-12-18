@@ -3,7 +3,7 @@
 #include "IInputManagerMock.h"
 #include "IObserverMock.h"
 #include <Game.h>
-#include "IGameModeStrategyMock.cpp"
+#include "IGameModeStrategyMock.h"
 
 using namespace testing;
 
