@@ -90,6 +90,11 @@ $(function(){ initResizable(false); });
   <div class="headertitle"><div class="title">InputManager Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Gestionarea input-urilor utilizatorului pentru jocul Tetris.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_input_manager_8h_source.html">InputManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for InputManager:</div>
 <div class="dyncontent">
@@ -106,7 +111,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6859fdf7f72ff3effbe86c87e901ecb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Înregistrează o tastă pentru un anumit tip de input.  <br /></td></tr>
 <tr class="separator:a6859fdf7f72ff3effbe86c87e901ecb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Gestionarea input-urilor utilizatorului pentru jocul Tetris. </p>
+<p><a class="el" href="class_input_manager.html" title="Gestionarea input-urilor utilizatorului pentru jocul Tetris.">InputManager</a> permite înregistrarea și verificarea input-urilor pentru diferite tipuri definite în TetrisAPI::EInputType. Stochează tastele și stările acestora și le verifică în timpul execuției. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a8e049b45caee6bfda3888d6456fc4ac5" name="a8e049b45caee6bfda3888d6456fc4ac5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a8e049b45caee6bfda3888d6456fc4ac5">&#9670;&#160;</a></span>Check()</h2>
 
@@ -123,13 +131,23 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Verifică dacă un anumit input este activ. </p>
+<p>Verifică dacă input-ul asociat unui anumit tip este activ.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inputType</td><td>Tipul de input definit în TetrisAPI::EInputType. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true dacă input-ul este activ, false în caz contrar. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true dacă input-ul este activ, false în caz contrar.</dd></dl>
+<p>Această funcție folosește tipul de input înregistrat și verifică starea curentă a tastelor asociate acestuia.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputType</td><td>Tipul de input definit în TetrisAPI::EInputType. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true dacă input-ul este activ, false în caz contrar.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a6859fdf7f72ff3effbe86c87e901ecb6" title="Înregistrează o tastă pentru un anumit tip de input.">Register()</a> </dd></dl>
 
 </div>
 </div>
@@ -156,10 +174,19 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">inputType</td><td>Tipul de input definit în TetrisAPI::EInputType. </td></tr>
-    <tr><td class="paramname">key</td><td>Codul tastei (uint16_t) care trebuie asociată input-ului. </td></tr>
+    <tr><td class="paramname">key</td><td>Codul tastei (uint16_t) care trebuie asociată input-ului.</td></tr>
   </table>
   </dd>
 </dl>
+<p>Dacă tipul de input nu este deja înregistrat, acesta va fi adăugat. Dacă există, tasta este adăugată la lista existentă de taste.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">inputType</td><td>Tipul de input definit în TetrisAPI::EInputType. </td></tr>
+    <tr><td class="paramname">key</td><td>Codul tastei (uint16_t) care trebuie asociată input-ului.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#a8e049b45caee6bfda3888d6456fc4ac5" title="Verifică dacă un anumit input este activ.">Check()</a> </dd></dl>
 
 </div>
 </div>

@@ -1,28 +1,32 @@
 \doxysection{Input\+Manager.\+h}
-\hypertarget{_input_manager_8h_source}{}\label{_input_manager_8h_source}
+\hypertarget{_input_manager_8h_source}{}\label{_input_manager_8h_source}\mbox{\hyperlink{_input_manager_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}IInputManager.h"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_input_manager}{InputManager}}\ :\ \textcolor{keyword}{public}\ TetrisAPI::IInputManager}
-\DoxyCodeLine{00007\ \{}
-\DoxyCodeLine{00008\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check}}(TetrisAPI::EInputType\ inputType);}
-\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_manager_a6859fdf7f72ff3effbe86c87e901ecb6}{Register}}(TetrisAPI::EInputType\ inputType,\ uint16\_t\ key);}
-\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{struct\ }KeyState}
-\DoxyCodeLine{00013\ \ \ \ \ \{}
-\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ std::vector<uint16\_t>\ keys;}
-\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ lastState;}
-\DoxyCodeLine{00016\ \ \ \ \ \};}
-\DoxyCodeLine{00017\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check}}(KeyState\&\ keyState);}
-\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check}}(\textcolor{keyword}{const}\ std::vector<uint16\_t>\&\ keys);}
-\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00021\ \ \ \ \ std::unordered\_map<TetrisAPI::EInputType,\ KeyState>\ m\_registeredInputs;}
-\DoxyCodeLine{00022\ \};}
-\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <unordered\_map>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}IInputManager.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_input_manager}{InputManager}}\ :\ \textcolor{keyword}{public}\ TetrisAPI::IInputManager}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check}}(TetrisAPI::EInputType\ inputType);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_input_manager_a6859fdf7f72ff3effbe86c87e901ecb6}{Register}}(TetrisAPI::EInputType\ inputType,\ uint16\_t\ key);}
+\DoxyCodeLine{00040\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{struct\ }KeyState}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ std::vector<uint16\_t>\ keys;\ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ lastState;\ }
+\DoxyCodeLine{00050\ \ \ \ \ \};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check}}(KeyState\&\ keyState);}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check}}(\textcolor{keyword}{const}\ std::vector<uint16\_t>\&\ keys);}
+\DoxyCodeLine{00055\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ \ \ \ \ std::unordered\_map<TetrisAPI::EInputType,\ KeyState>\ m\_registeredInputs;}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
 
 \end{DoxyCode}

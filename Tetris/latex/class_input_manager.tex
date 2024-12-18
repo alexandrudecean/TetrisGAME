@@ -1,5 +1,14 @@
 \doxysection{Input\+Manager Class Reference}
 \hypertarget{class_input_manager}{}\label{class_input_manager}\index{InputManager@{InputManager}}
+
+
+Gestionarea input-\/urilor utilizatorului pentru jocul Tetris.  
+
+
+
+
+{\ttfamily \#include $<$Input\+Manager.\+h$>$}
+
 Inheritance diagram for Input\+Manager\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -15,6 +24,11 @@ void \mbox{\hyperlink{class_input_manager_a6859fdf7f72ff3effbe86c87e901ecb6}{Reg
 \begin{DoxyCompactList}\small\item\em Înregistrează o tastă pentru un anumit tip de input. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Gestionarea input-\/urilor utilizatorului pentru jocul Tetris. 
+
+\doxylink{class_input_manager}{Input\+Manager} permite înregistrarea și verificarea input-\/urilor pentru diferite tipuri definite în Tetris\+API\+::\+EInput\+Type. Stochează tastele și stările acestora și le verifică în timpul execuției. 
+
 \doxysubsection{Member Function Documentation}
 \Hypertarget{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}\index{InputManager@{InputManager}!Check@{Check}}
 \index{Check@{Check}!InputManager@{InputManager}}
@@ -26,14 +40,29 @@ bool Input\+Manager\+::\+Check (\begin{DoxyParamCaption}\item[{Tetris\+API\+::\+
 
 Verifică dacă un anumit input este activ. 
 
+Verifică dacă input-\/ul asociat unui anumit tip este activ.
+
 
 \begin{DoxyParams}{Parameters}
 {\em input\+Type} & Tipul de input definit în Tetris\+API\+::\+EInput\+Type. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-true dacă input-\/ul este activ, false în caz contrar. 
+true dacă input-\/ul este activ, false în caz contrar.
 \end{DoxyReturn}
+Această funcție folosește tipul de input înregistrat și verifică starea curentă a tastelor asociate acestuia.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Type} & Tipul de input definit în Tetris\+API\+::\+EInput\+Type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true dacă input-\/ul este activ, false în caz contrar.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_input_manager_a6859fdf7f72ff3effbe86c87e901ecb6}{Register()} 
+\end{DoxySeeAlso}
 \Hypertarget{class_input_manager_a6859fdf7f72ff3effbe86c87e901ecb6}\index{InputManager@{InputManager}!Register@{Register}}
 \index{Register@{Register}!InputManager@{InputManager}}
 \doxysubsubsection{\texorpdfstring{Register()}{Register()}}
@@ -48,12 +77,24 @@ void Input\+Manager\+::\+Register (\begin{DoxyParamCaption}\item[{Tetris\+API\+:
 \begin{DoxyParams}{Parameters}
 {\em input\+Type} & Tipul de input definit în Tetris\+API\+::\+EInput\+Type. \\
 \hline
-{\em key} & Codul tastei (uint16\+\_\+t) care trebuie asociată input-\/ului. \\
+{\em key} & Codul tastei (uint16\+\_\+t) care trebuie asociată input-\/ului.\\
 \hline
 \end{DoxyParams}
+Dacă tipul de input nu este deja înregistrat, acesta va fi adăugat. Dacă există, tasta este adăugată la lista existentă de taste.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+Type} & Tipul de input definit în Tetris\+API\+::\+EInput\+Type. \\
+\hline
+{\em key} & Codul tastei (uint16\+\_\+t) care trebuie asociată input-\/ului.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxylink{class_input_manager_a8e049b45caee6bfda3888d6456fc4ac5}{Check()} 
+\end{DoxySeeAlso}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Input\+Manager.\+h\item 
+\mbox{\hyperlink{_input_manager_8h}{Input\+Manager.\+h}}\item 
 \mbox{\hyperlink{_input_manager_8cpp}{Input\+Manager.\+cpp}}\end{DoxyCompactItemize}

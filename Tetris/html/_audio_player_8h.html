@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.12.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: File List</title>
+<title>My Project: AudioPlayer.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -55,8 +55,6 @@ $(function() {
 /* @license-end */
 </script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="doc-content">
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function(){ initResizable(false); });
@@ -83,20 +81,41 @@ $(function(){ initResizable(false); });
 </div>
 </div>
 
+</div><!-- top -->
+<div id="doc-content">
 <div class="header">
-  <div class="headertitle"><div class="title">File List</div></div>
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
+  <div class="headertitle"><div class="title">AudioPlayer.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all documented files with brief descriptions:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="_audio_player_8cpp.html" target="_self">AudioPlayer.cpp</a></td><td class="desc">Implementarea clasei <a class="el" href="class_audio_player.html" title="Clasa pentru gestionarea efectelor sonore și muzicii din joc.">AudioPlayer</a> pentru gestionarea efectelor sonore și muzicii din joc </td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a href="_audio_player_8h_source.html"><span class="icondoc"></span></a><a class="el" href="_audio_player_8h.html" target="_self">AudioPlayer.h</a></td><td class="desc">Declarația clasei <a class="el" href="class_audio_player.html" title="Clasa pentru gestionarea efectelor sonore și muzicii din joc.">AudioPlayer</a> pentru gestionarea sunetelor din jocul Tetris </td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a href="_draw_manager_8h_source.html"><span class="icondoc"></span></a><b>DrawManager.h</b></td><td class="desc"></td></tr>
-<tr id="row_3_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icondoc"></span><a class="el" href="_input_manager_8cpp.html" target="_self">InputManager.cpp</a></td><td class="desc">Implementarea clasei <a class="el" href="class_input_manager.html" title="Gestionarea input-urilor utilizatorului pentru jocul Tetris.">InputManager</a> pentru gestionarea input-urilor utilizatorului </td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a href="_input_manager_8h_source.html"><span class="icondoc"></span></a><a class="el" href="_input_manager_8h.html" target="_self">InputManager.h</a></td><td class="desc">Declarația clasei <a class="el" href="class_input_manager.html" title="Gestionarea input-urilor utilizatorului pentru jocul Tetris.">InputManager</a> pentru gestionarea input-urilor utilizatorului </td></tr>
+
+<p>Declarația clasei <a class="el" href="class_audio_player.html" title="Clasa pentru gestionarea efectelor sonore și muzicii din joc.">AudioPlayer</a> pentru gestionarea sunetelor din jocul Tetris.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;raylib.h&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &quot;BaseObserver.h&quot;</code><br />
+</div>
+<p><a href="_audio_player_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_audio_player.html">AudioPlayer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clasa pentru gestionarea efectelor sonore și muzicii din joc.  <a href="class_audio_player.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a72dbf85a307953e6b6ef8e9e4c6df895" id="r_a72dbf85a307953e6b6ef8e9e4c6df895"><td class="memItemLeft" align="right" valign="top"><a id="a72dbf85a307953e6b6ef8e9e4c6df895" name="a72dbf85a307953e6b6ef8e9e4c6df895"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>AudioPlayerPtr</b> = std::shared_ptr&lt;<a class="el" href="class_audio_player.html">AudioPlayer</a>&gt;</td></tr>
+<tr class="memdesc:a72dbf85a307953e6b6ef8e9e4c6df895"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tip definit pentru un pointer inteligent către un obiect <a class="el" href="class_audio_player.html" title="Clasa pentru gestionarea efectelor sonore și muzicii din joc.">AudioPlayer</a>. <br /></td></tr>
+<tr class="separator:a72dbf85a307953e6b6ef8e9e4c6df895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- directory -->
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Declarația clasei <a class="el" href="class_audio_player.html" title="Clasa pentru gestionarea efectelor sonore și muzicii din joc.">AudioPlayer</a> pentru gestionarea sunetelor din jocul Tetris. </p>
+<p>Clasa <a class="el" href="class_audio_player.html" title="Clasa pentru gestionarea efectelor sonore și muzicii din joc.">AudioPlayer</a> este un observator care răspunde la evenimentele jocului, cum ar fi ștergerea liniilor, rotația blocurilor și sfârșitul jocului, prin redarea de sunete corespunzătoare. </p>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0

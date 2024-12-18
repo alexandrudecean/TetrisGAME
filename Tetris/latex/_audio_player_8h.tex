@@ -1,0 +1,27 @@
+\doxysection{Audio\+Player.\+h File Reference}
+\hypertarget{_audio_player_8h}{}\label{_audio_player_8h}\index{AudioPlayer.h@{AudioPlayer.h}}
+
+
+Declarația clasei \doxylink{class_audio_player}{Audio\+Player} pentru gestionarea sunetelor din jocul Tetris.  
+
+
+{\ttfamily \#include $<$raylib.\+h$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include "{}Base\+Observer.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_audio_player}{Audio\+Player}}
+\begin{DoxyCompactList}\small\item\em Clasa pentru gestionarea efectelor sonore și muzicii din joc. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{_audio_player_8h_a72dbf85a307953e6b6ef8e9e4c6df895}\label{_audio_player_8h_a72dbf85a307953e6b6ef8e9e4c6df895} 
+using {\bfseries Audio\+Player\+Ptr} = std\+::shared\+\_\+ptr$<$\mbox{\hyperlink{class_audio_player}{Audio\+Player}}$>$
+\begin{DoxyCompactList}\small\item\em Tip definit pentru un pointer inteligent către un obiect \doxylink{class_audio_player}{Audio\+Player}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Declarația clasei \doxylink{class_audio_player}{Audio\+Player} pentru gestionarea sunetelor din jocul Tetris. 
+
+Clasa \doxylink{class_audio_player}{Audio\+Player} este un observator care răspunde la evenimentele jocului, cum ar fi ștergerea liniilor, rotația blocurilor și sfârșitul jocului, prin redarea de sunete corespunzătoare. 

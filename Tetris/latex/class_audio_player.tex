@@ -1,5 +1,14 @@
 \doxysection{Audio\+Player Class Reference}
 \hypertarget{class_audio_player}{}\label{class_audio_player}\index{AudioPlayer@{AudioPlayer}}
+
+
+Clasa pentru gestionarea efectelor sonore și muzicii din joc.  
+
+
+
+
+{\ttfamily \#include $<$Audio\+Player.\+h$>$}
+
 Inheritance diagram for Audio\+Player\+:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,21 +18,79 @@ Inheritance diagram for Audio\+Player\+:\begin{figure}[H]
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\Hypertarget{class_audio_player_aea0c8671decaeccb23924f3fe2f1c132}\label{class_audio_player_aea0c8671decaeccb23924f3fe2f1c132} 
-void {\bfseries On\+Lines\+Cleared} (uint16\+\_\+t num\+Lines)
-\item 
+\mbox{\hyperlink{class_audio_player_aa0545193648596a6e541fe964f16f902}{Audio\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Constructorul clasei \doxylink{class_audio_player}{Audio\+Player}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_audio_player_aea0c8671decaeccb23924f3fe2f1c132}{On\+Lines\+Cleared}} (uint16\+\_\+t num\+Lines)
+\begin{DoxyCompactList}\small\item\em Reacționează la evenimentul de ștergere a liniilor din grilă. \end{DoxyCompactList}\item 
 \Hypertarget{class_audio_player_a288ee3b3a8f65f974b1b01d935689b13}\label{class_audio_player_a288ee3b3a8f65f974b1b01d935689b13} 
 void {\bfseries On\+Rotate} ()
-\item 
-\Hypertarget{class_audio_player_aaf94e574c4090c6d38b9260d236559ac}\label{class_audio_player_aaf94e574c4090c6d38b9260d236559ac} 
-void {\bfseries On\+Game\+Over} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Reacționează la evenimentul de rotire a unui bloc. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_audio_player_aaf94e574c4090c6d38b9260d236559ac}{On\+Game\+Over}} ()
+\begin{DoxyCompactList}\small\item\em Reacționează la evenimentul de Game Over. \end{DoxyCompactList}\item 
 \Hypertarget{class_audio_player_a1639a1022abd49d9a5158fef5f952ca7}\label{class_audio_player_a1639a1022abd49d9a5158fef5f952ca7} 
 Music {\bfseries Get\+Music} () const
-\end{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_audio_player_a41d5beac7ef47d2d935f17e822cbfd9f}{\texorpdfstring{$\sim$}{\string~}\+Audio\+Player}} ()
+\begin{DoxyCompactList}\small\item\em Destructorul clasei \doxylink{class_audio_player}{Audio\+Player}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Clasa pentru gestionarea efectelor sonore și muzicii din joc. 
+
+\doxylink{class_audio_player}{Audio\+Player} moștenește funcționalitățile clasei Base\+Observer și implementează răspunsurile la evenimentele jocului. Gestionarea sunetelor include muzica de fundal, sunetul la rotație, sunetul pentru ștergerea liniilor și sunetul pentru sfârșitul jocului. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_audio_player_aa0545193648596a6e541fe964f16f902}\index{AudioPlayer@{AudioPlayer}!AudioPlayer@{AudioPlayer}}
+\index{AudioPlayer@{AudioPlayer}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{AudioPlayer()}{AudioPlayer()}}
+{\footnotesize\ttfamily \label{class_audio_player_aa0545193648596a6e541fe964f16f902} 
+Audio\+Player\+::\+Audio\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructorul clasei \doxylink{class_audio_player}{Audio\+Player}. 
+
+Încarcă muzica de fundal și efectele sonore necesare pentru joc și începe redarea muzicii. \Hypertarget{class_audio_player_a41d5beac7ef47d2d935f17e822cbfd9f}\index{AudioPlayer@{AudioPlayer}!````~AudioPlayer@{\texorpdfstring{$\sim$}{\string~}AudioPlayer}}
+\index{````~AudioPlayer@{\texorpdfstring{$\sim$}{\string~}AudioPlayer}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}AudioPlayer()}{\string~AudioPlayer()}}
+{\footnotesize\ttfamily \label{class_audio_player_a41d5beac7ef47d2d935f17e822cbfd9f} 
+Audio\+Player\+::\texorpdfstring{$\sim$}{\string~}\+Audio\+Player (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Destructorul clasei \doxylink{class_audio_player}{Audio\+Player}. 
+
+Eliberează memoria utilizată pentru sunete și muzică. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_audio_player_aaf94e574c4090c6d38b9260d236559ac}\index{AudioPlayer@{AudioPlayer}!OnGameOver@{OnGameOver}}
+\index{OnGameOver@{OnGameOver}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{OnGameOver()}{OnGameOver()}}
+{\footnotesize\ttfamily \label{class_audio_player_aaf94e574c4090c6d38b9260d236559ac} 
+void Audio\+Player\+::\+On\+Game\+Over (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Reacționează la evenimentul de Game Over. 
+
+Oprește muzica de fundal și redă sunetul specific pentru Game Over. \Hypertarget{class_audio_player_aea0c8671decaeccb23924f3fe2f1c132}\index{AudioPlayer@{AudioPlayer}!OnLinesCleared@{OnLinesCleared}}
+\index{OnLinesCleared@{OnLinesCleared}!AudioPlayer@{AudioPlayer}}
+\doxysubsubsection{\texorpdfstring{OnLinesCleared()}{OnLinesCleared()}}
+{\footnotesize\ttfamily \label{class_audio_player_aea0c8671decaeccb23924f3fe2f1c132} 
+void Audio\+Player\+::\+On\+Lines\+Cleared (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{num\+Lines}{}\end{DoxyParamCaption})}
+
+
+
+Reacționează la evenimentul de ștergere a liniilor din grilă. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em num\+Lines} & Numărul de linii șterse (nefolosit în această implementare). \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Audio\+Player.\+h\item 
-Audio\+Player.\+cpp\end{DoxyCompactItemize}
+\mbox{\hyperlink{_audio_player_8h}{Audio\+Player.\+h}}\item 
+\mbox{\hyperlink{_audio_player_8cpp}{Audio\+Player.\+cpp}}\end{DoxyCompactItemize}

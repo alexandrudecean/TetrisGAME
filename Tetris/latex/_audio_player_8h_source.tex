@@ -1,31 +1,34 @@
 \doxysection{Audio\+Player.\+h}
-\hypertarget{_audio_player_8h_source}{}\label{_audio_player_8h_source}
+\hypertarget{_audio_player_8h_source}{}\label{_audio_player_8h_source}\mbox{\hyperlink{_audio_player_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <memory>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}BaseObserver.h"{}}}
-\DoxyCodeLine{00005\ }
-\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audio_player}{AudioPlayer}};}
-\DoxyCodeLine{00007\ \textcolor{keyword}{using\ }AudioPlayerPtr\ =\ std::shared\_ptr<AudioPlayer>;}
-\DoxyCodeLine{00008\ }
-\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audio_player}{AudioPlayer}}\ :\textcolor{keyword}{public}\ TetrisAPI::BaseObserver}
-\DoxyCodeLine{00010\ \{}
-\DoxyCodeLine{00011\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_audio_player}{AudioPlayer}}();}
-\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{void}\ OnLinesCleared(uint16\_t\ numLines);}
-\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ OnRotate();}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{void}\ OnGameOver();}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <raylib.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}BaseObserver.h"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audio_player}{AudioPlayer}};}
 \DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{inline}\ Music\ GetMusic()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_music;\ \}}
-\DoxyCodeLine{00018\ }
-\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_audio_player}{\string~AudioPlayer}}();}
-\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00021\ \ \ \ \ Music\ m\_music;}
-\DoxyCodeLine{00022\ \ \ \ \ Sound\ m\_rotateSound;}
-\DoxyCodeLine{00023\ \ \ \ \ Sound\ m\_clearedSound;}
-\DoxyCodeLine{00024\ \ \ \ \ Sound\ m\_gameOverSound;}
-\DoxyCodeLine{00025\ \};}
-\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{using\ }\mbox{\hyperlink{_audio_player_8h_a72dbf85a307953e6b6ef8e9e4c6df895}{AudioPlayerPtr}}\ =\ std::shared\_ptr<AudioPlayer>;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_audio_player}{AudioPlayer}}\ :\textcolor{keyword}{public}\ TetrisAPI::BaseObserver}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_audio_player_aa0545193648596a6e541fe964f16f902}{AudioPlayer}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_audio_player_aea0c8671decaeccb23924f3fe2f1c132}{OnLinesCleared}}(uint16\_t\ numLines);}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_audio_player_a288ee3b3a8f65f974b1b01d935689b13}{OnRotate}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_audio_player_aaf94e574c4090c6d38b9260d236559ac}{OnGameOver}}();}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{inline}\ Music\ GetMusic()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_music;\ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_audio_player_a41d5beac7ef47d2d935f17e822cbfd9f}{\string~AudioPlayer}}();}
+\DoxyCodeLine{00042\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00043\ \ \ \ \ Music\ m\_music;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ Sound\ m\_rotateSound;\ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ Sound\ m\_clearedSound;\ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ Sound\ m\_gameOverSound;\ \ }
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
 
 \end{DoxyCode}
