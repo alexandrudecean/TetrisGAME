@@ -168,7 +168,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BlockTests.cpp" />
+    <ClCompile Include="ColorTests.cpp" />
+    <ClCompile Include="GameTests.cpp" />
+    <ClCompile Include="GridTests.cpp" />
+    <ClCompile Include="IGameModeStrategyMock.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="ObservableTests.cpp" />
+    <ClCompile Include="PositionTests.cpp" />
+    <ClCompile Include="ScoreManagerTests.cpp" />
+    <ClCompile Include="TimerTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TetrisAPI\TetrisAPI.vcxproj">
@@ -177,6 +186,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="IColorManagerMock.h" />
+    <ClInclude Include="IInputManagerMock.h" />
+    <ClInclude Include="IObserverMock.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
