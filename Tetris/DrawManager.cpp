@@ -69,6 +69,8 @@ void DrawGameOver(const Font& font, const IGamePtr& game)
 		DrawTextEx(font, "ENTER", { 300, 400 }, 60, 2, BLACK);
 		DrawTextEx(font, "Return to menu, press:", { 60, 500 }, 48, 2, BLACK);
 		DrawTextEx(font, "SPACE", { 300, 560 }, 60, 2, BLACK);
+		DrawTextEx(font, "Exit, press:", { 60, 660 }, 48, 2, BLACK);
+		DrawTextEx(font, "ESC", { 300, 720 }, 60, 2, BLACK);
 
 	}
 }

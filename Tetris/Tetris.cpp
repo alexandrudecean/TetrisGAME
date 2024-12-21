@@ -132,7 +132,12 @@ IGameModeStrategyPtr ShowMenu()
 
 		Rectangle hardButton = { 300, 400, 200, 60 };
 		DrawRectangleRec(hardButton, ::RED);
-		DrawText("HARD", 350, 415, 30, ::BLACK);
+		DrawText("HARD", 355, 415, 30, ::BLACK);
+
+		Rectangle exitButton = { 300, 500, 200, 60 };
+		DrawRectangleRec(exitButton, ::BLUE);
+		DrawText("EXIT", 355, 515, 30, ::BLACK);
+
 
 		if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON))
 		{
@@ -146,6 +151,11 @@ IGameModeStrategyPtr ShowMenu()
 			if (CheckCollisionPointRec(mousePos, hardButton))
 			{
 				selectedStrategy = std::make_shared<HardModeStrategy>();
+				break;
+			}
+			if (CheckCollisionPointRec(mousePos, exitButton))
+			{
+				selectedStrategy = nullptr;
 				break;
 			}
 		}
