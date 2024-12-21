@@ -136,7 +136,6 @@
     <ClCompile Include="ColorManager.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Grid.cpp" />
-    <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="Observable.cpp" />
     <ClCompile Include="Position.cpp" />
     <ClCompile Include="ScoreManager.cpp" />
@@ -157,7 +156,6 @@
     <ClInclude Include="IGameModeStrategy.h" />
     <ClInclude Include="IInputManager.h" />
     <ClInclude Include="IObserver.h" />
-    <ClInclude Include="MenuManager.h" />
     <ClInclude Include="Observable.h" />
     <ClInclude Include="Position.h" />
     <ClInclude Include="ScoreManager.h" />
